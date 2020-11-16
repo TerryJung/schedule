@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
-import SpoqaHansSansRegular from "./Spoqa Han Sans Regular.ttf";
-// import SpoqaHansSansRegular from "./Weird.ttf";
+import SpoqaHansSansRegular from "../assets/fonts/Spoqa Han Sans Regular.ttf";
+// import SpoqaHansSansRegular from "../assets/fonts/Weird.ttf";
 
 // TODO: delete every font files except Regular in this folder
 export default createGlobalStyle`
