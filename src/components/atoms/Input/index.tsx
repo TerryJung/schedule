@@ -1,4 +1,4 @@
-import React from "react";
+import React, { InputHTMLAttributes } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -31,12 +31,12 @@ const DefaultInput = styled.input`
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "text")};
 `;
 
-interface InputProps {
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input = ({ value, onChange }: InputProps) => {
+const Input = ({ value, onChange, ...props }: InputProps) => {
   return (
     <Container>
       <form>
@@ -45,6 +45,7 @@ const Input = ({ value, onChange }: InputProps) => {
           placeholder="aasdf"
           value={value}
           onChange={onChange}
+          {...props}
         />
       </form>
     </Container>

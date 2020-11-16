@@ -10,6 +10,8 @@ const Schedule = () => {
     <Input
       value={scheduleName}
       onChange={(e) => setScheduleName(e.target.value)}
+      size={10}
+      style={{ width: "500px" }}
     />
   );
 };
