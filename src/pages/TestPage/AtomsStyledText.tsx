@@ -49,7 +49,11 @@ const AtomsStyledText = () => {
         <StyledText color="yellow" size={30} style={{ borderColor: "pink" }}>
           ColorVariation
         </StyledText>
-        <StyledText color="green" size={40} style={{ borderColor: "blue" }}>
+        <StyledText
+          color="black"
+          size={40}
+          style={{ borderColor: "blue", backgroundColor: "yellow" }}
+        >
           ColorVariation
         </StyledText>
       </FlexRowContainer>
