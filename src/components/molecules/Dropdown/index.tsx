@@ -5,6 +5,7 @@ import StyledText from '../../atoms/StyledText/index';
 import Label from '../../atoms/Label';
 import Text from '../../atoms/Text/index';
 import useClickOutsideComponet from '../../../hooks/useClickOutsideComponet';
+import useKeyDown from '../../../hooks/useKeyDown';
 
 interface DropdownProps {
   labelText?: string;
@@ -36,7 +37,7 @@ const Dropdown = ({ labelText, disabled, ...props }: DropdownProps) => {
   const wrapperRef = useRef(null);
 
   useClickOutsideComponet(wrapperRef, () => setToggled(false));
-  // useKeyPress()
+  useKeyDown(27, () => setToggled(false));
 
   console.log(toggled);
 

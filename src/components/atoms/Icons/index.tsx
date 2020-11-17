@@ -1,6 +1,7 @@
 import React from 'react';
 import { ReactComponent as AddCalendar } from '../../../assets/svgs/AddCalendar.svg';
 import { ReactComponent as Calendar } from '../../../assets/svgs/Calendar.svg';
+import { ReactComponent as Check } from '../../../assets/svgs/Check.svg';
 import { ReactComponent as Clear } from '../../../assets/svgs/Clear.svg';
 import { ReactComponent as Clock } from '../../../assets/svgs/Clock.svg';
 import { ReactComponent as Close } from '../../../assets/svgs/Close.svg';
@@ -18,6 +19,7 @@ const Container = styled.div``;
 export const iconList = {
   AddCalendar,
   Calendar,
+  Check,
   Clear,
   Clock,
   Close,

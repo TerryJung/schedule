@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 export interface TextProps {
-  children: string;
+  children: JSX.Element | string;
   color?: string;
   size?: number;
   style?: React.CSSProperties;

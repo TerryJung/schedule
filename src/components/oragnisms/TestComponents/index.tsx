@@ -9,6 +9,8 @@ import { ButtonVariant } from '../../atoms/Button/index';
 import Text from '../../atoms/Text/index';
 import Dropdown from '../../molecules/Dropdown/index';
 import StyledText from '../../atoms/StyledText/index';
+import TextWithIcon from '../../molecules/TextWithIcon';
+import DropdownItemList from '../../molecules/DropdownItemList';
 
 const TestComponents = () => {
   const [scheduleName, setScheduleName] = useState('');
@@ -37,7 +39,7 @@ const TestComponents = () => {
       </Label>
       <Text>Text</Text>
       <Label>Label</Label>
-      <StyledText>StyledText</StyledText>
+      <StyledText width={150}>StyledText</StyledText>
       <Button>
         <Text>Button</Text>
       </Button>
@@ -50,6 +52,26 @@ const TestComponents = () => {
       <Label color="blue" size={30}>
         Molecules
       </Label>
+
+      <Label color="#232323" size={20}>
+        Molecules - TextWithIcon
+      </Label>
+      <TextWithIcon iconColor="white" iconName="Check">
+        TextWithIcon
+      </TextWithIcon>
+      <TextWithIcon
+        style={{ color: '#609FFF', width: 170 }}
+        iconColor="#609FFF"
+        iconName="Check"
+      >
+        TextWithIconalskdjflakdsjflkasdjflkasdjflkasjdflkajsdkflajsdlfaksdjfa
+      </TextWithIcon>
+
+      <Label color="#232323" size={20}>
+        Molecules - DropdownItemList
+      </Label>
+      <DropdownItemList width={150} />
+
       <Label color="#232323" size={20}>
         Molecules - InputWithLabel
       </Label>

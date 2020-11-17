@@ -4,7 +4,6 @@ import styled from 'styled-components';
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  // hover?: boolean; // It is for color changing on hover
 }
 
 const Container = styled.div`
@@ -36,14 +35,6 @@ const DefaultInput = styled.input<InputProps>`
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'text')};
 `;
 
-// This code is for adding hover function itself
-
-// :hover {
-//   ${({ hover }) =>
-//     hover
-//       ? `border: 1px solid #609fff;
-//   outline: none;`
-//       : ''}
 // }
 
 const Input = ({ value, onChange, ...props }: InputProps) => {
@@ -54,7 +45,6 @@ const Input = ({ value, onChange, ...props }: InputProps) => {
           type="text"
           value={value}
           onChange={onChange}
-          // hover={hover}
           {...props}
         />
       </form>

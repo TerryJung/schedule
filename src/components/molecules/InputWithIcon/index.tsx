@@ -3,6 +3,10 @@ import Input, { InputProps } from '../../atoms/Input';
 import Icons, { iconList } from '../../atoms/Icons/index';
 import styled from 'styled-components';
 
+const Wrapper = styled.div`
+  position: relative;
+`;
+
 const Container = styled.div`
   position: absolute;
 `;
@@ -36,7 +40,7 @@ const InputWithIcon = ({
   const hoverColor = '#609FFF';
 
   return (
-    <div>
+    <Wrapper>
       <Container
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
@@ -60,7 +64,7 @@ const InputWithIcon = ({
         </IconContainer>
       </Container>
       <EmptySpace />
-    </div>
+    </Wrapper>
   );
 };
 
