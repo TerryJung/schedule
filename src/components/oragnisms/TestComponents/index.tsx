@@ -4,6 +4,9 @@ import Input from '../../../components/atoms/Input';
 import InputWithIcon from '../../../components/molecules/InputWithIcon/index';
 import Label from '../../atoms/Label';
 import InputWithLabel from '../../molecules/InputWithLabel';
+import Button from '../../atoms/Button/index';
+import { ButtonVariant } from '../../atoms/Button/index';
+import Text from '../../atoms/Text/index';
 
 const TestComponents = () => {
   const [scheduleName, setScheduleName] = useState('');
@@ -30,6 +33,17 @@ const TestComponents = () => {
       <Label color="blue" size={30}>
         Atoms
       </Label>
+      <Text>Text</Text>
+      <Text>Label</Text>
+      <Button>
+        <Text>Button</Text>
+      </Button>
+      <Button>
+        <Text>취소</Text>
+      </Button>
+      <Button variant={ButtonVariant.FloodFill}>
+        <Text color="white">저장</Text>
+      </Button>
       <Label color="blue" size={30}>
         Molecules
       </Label>
