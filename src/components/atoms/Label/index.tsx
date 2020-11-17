@@ -1,9 +1,9 @@
-import React, { InputHTMLAttributes } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div``;
 
-const StyledSpan = styled.input`
+const StyledSpan = styled.span`
   height: 20px;
 
   font-family: 'Spoqa Han Sans Regular';
@@ -11,18 +11,18 @@ const StyledSpan = styled.input`
   font-weight: bold;
   font-size: 13px;
   line-height: 20px;
+  color: ${({ color }) => color};
 `;
 
-export interface LabelProps extends InputHTMLAttributes<HTMLInputElement> {
-  value: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  // hover?: boolean; // It is for color changing on hover
+export interface LabelProps {
+  children: string;
+  color?: string;
 }
 
-const Label = ({ children, ...props }: LabelProps) => {
+const Label = ({ children, color = 'black' }: LabelProps) => {
   return (
     <Container>
-      <StyledSpan>{children}</StyledSpan>
+      <StyledSpan color={color}>{children}</StyledSpan>
     </Container>
   );
 };

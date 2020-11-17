@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Icons from '../../../components/atoms/Icons';
 import Input from '../../../components/atoms/Input';
 import InputWithIcon from '../../../components/molecules/InputWithIcon/index';
+import Label from '../../atoms/Label';
 
 const TestComponents = () => {
   const [scheduleName, setScheduleName] = useState('');
@@ -24,6 +25,7 @@ const TestComponents = () => {
         style={{ width: '100px' }}
         iconName="Calendar"
       />
+      <Label>테스트 라벨</Label>
     </div>
   );
 };
