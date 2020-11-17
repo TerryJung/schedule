@@ -25,11 +25,11 @@ const DefaultInput = styled.input<InputProps>`
   }
 
   ::placeholder {
-    color: #DCDCDC;
+    color: #dcdcdc;
   }
 
-  font-family: "Spoqa Han Sans Regular";
-  font-style: normal
+  font-family: 'Spoqa Han Sans Regular';
+  font-style: normal;
   font-weight: normal;
   font-size: 13px;
   line-height: 20px;

@@ -1,20 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
+import Input, { InputProps } from '../../atoms/Input/index';
+import Label from '../../atoms/Label';
 
-const Container = styled.div`
-  position: absolute;
-`;
+interface InputWithLabelProps extends InputProps {
+  labelText: string;
+}
 
-const IconContainer = styled.div`
-  position: absolute;
-  top: 3px;
-  right: 5px;
-`;
-
-interface InputWithLabelProps {}
-
-const InputWithLabel = ({}) => {
-  return <div></div>;
+const InputWithLabel = ({
+  labelText,
+  value,
+  onChange,
+  ...props
+}: InputWithLabelProps) => {
+  return (
+    <div>
+      <Label color="#999999">{labelText}</Label>
+      <Input value={value} onChange={onChange} {...props} />
+    </div>
+  );
 };
 
 export default InputWithLabel;
