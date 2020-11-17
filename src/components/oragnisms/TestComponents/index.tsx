@@ -7,6 +7,8 @@ import InputWithLabel from '../../molecules/InputWithLabel';
 import Button from '../../atoms/Button/index';
 import { ButtonVariant } from '../../atoms/Button/index';
 import Text from '../../atoms/Text/index';
+import Dropdown from '../../molecules/Dropdown/index';
+import StyledText from '../../atoms/StyledText/index';
 
 const TestComponents = () => {
   const [scheduleName, setScheduleName] = useState('');
@@ -34,7 +36,8 @@ const TestComponents = () => {
         Atoms
       </Label>
       <Text>Text</Text>
-      <Text>Label</Text>
+      <Label>Label</Label>
+      <StyledText>StyledText</StyledText>
       <Button>
         <Text>Button</Text>
       </Button>
@@ -55,6 +58,7 @@ const TestComponents = () => {
         onChange={(e) => setInputWithLabelValue(e.target.value)}
         labelText={'InputWithLabel'}
       />
+      <Dropdown />
     </div>
   );
 };
