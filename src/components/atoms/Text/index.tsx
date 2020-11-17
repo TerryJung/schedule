@@ -5,12 +5,14 @@ export interface TextProps {
   children: string;
   color?: string;
   size?: number;
+  style?: React.CSSProperties;
 }
 
 const Container = styled.div``;
 
 const StyledSpan = styled.span<TextProps>`
   height: ${({ size }) => (size ? size + 7 : 20)}px;
+  display: block;
 
   font-family: 'Spoqa Han Sans Regular';
   font-style: normal;
@@ -18,12 +20,14 @@ const StyledSpan = styled.span<TextProps>`
   font-size: ${({ size }) => size}px;
   line-height: ${({ size }) => (size ? size + 7 : 20)}px;
   color: ${({ color }) => color};
+
+  /* text-align: left; */
 `;
 
-const Text = ({ children, color = 'black', size = 13 }: TextProps) => {
+const Text = ({ children, color = 'black', size = 13, style }: TextProps) => {
   return (
     <Container>
-      <StyledSpan color={color} size={size}>
+      <StyledSpan color={color} size={size} style={style}>
         {children}
       </StyledSpan>
     </Container>

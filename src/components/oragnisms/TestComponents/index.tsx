@@ -58,7 +58,8 @@ const TestComponents = () => {
         onChange={(e) => setInputWithLabelValue(e.target.value)}
         labelText={'InputWithLabel'}
       />
-      <Dropdown />
+      <Dropdown labelText="진료실" />
+      <Dropdown labelText="고장난진료실" disabled />
     </div>
   );
 };

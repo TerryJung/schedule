@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import Input, { InputProps } from '../../atoms/Input/index';
 import Label from '../../atoms/Label';
 

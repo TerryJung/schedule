@@ -60,8 +60,6 @@ const InputWithIcon = ({
         </IconContainer>
       </Container>
       <EmptySpace />
-
-      <div style={{ position: 'absolute' }}></div>
     </div>
   );
 };

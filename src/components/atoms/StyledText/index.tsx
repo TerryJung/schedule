@@ -1,11 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import Text, { TextProps } from '../Text/index';
 
-export interface StyledTextProps {
-  children: string;
-  color?: string;
-  size?: number;
-}
+export interface StyledTextProps extends TextProps {}
 
 const Container = styled.div`
   height: 30px;
@@ -18,27 +15,17 @@ const Container = styled.div`
   text-align: center;
 `;
 
-const StyledSpan = styled.span<StyledTextProps>`
-  display: block;
-  height: ${({ size }) => (size ? size + 7 : 20)}px;
-  font-family: 'Spoqa Han Sans Regular';
-  font-style: normal;
-  font-weight: normal;
-  font-size: ${({ size }) => size}px;
-  line-height: ${({ size }) => (size ? size + 7 : 20)}px;
-  color: ${({ color }) => color};
-`;
-
 const StyledText = ({
   children,
   color = 'black',
   size = 13,
+  style,
 }: StyledTextProps) => {
   return (
     <Container>
-      <StyledSpan color={color} size={size}>
+      <Text color={color} size={size} style={{ overflow: 'hidden', ...style }}>
         {children}
-      </StyledSpan>
+      </Text>
     </Container>
   );
 };
