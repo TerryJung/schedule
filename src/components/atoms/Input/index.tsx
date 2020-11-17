@@ -1,11 +1,17 @@
-import React, { InputHTMLAttributes } from "react";
-import styled from "styled-components";
+import React, { InputHTMLAttributes } from 'react';
+import styled from 'styled-components';
+
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  value: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  // hover?: boolean; // It is for color changing on hover
+}
 
 const Container = styled.div`
   overflow: visible;
 `;
 
-const DefaultInput = styled.input`
+const DefaultInput = styled.input<InputProps>`
   height: 30px;
   background: #ffffff;
   border: 1px solid #dcdcdc;
@@ -16,7 +22,6 @@ const DefaultInput = styled.input`
   :focus {
     border: 1px solid #609fff;
     outline: none;
-
   }
 
   ::placeholder {
@@ -28,13 +33,18 @@ const DefaultInput = styled.input`
   font-weight: normal;
   font-size: 13px;
   line-height: 20px;
-  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "text")};
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'text')};
 `;
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  value: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-}
+// This code is for adding hover function itself
+
+// :hover {
+//   ${({ hover }) =>
+//     hover
+//       ? `border: 1px solid #609fff;
+//   outline: none;`
+//       : ''}
+// }
 
 const Input = ({ value, onChange, ...props }: InputProps) => {
   return (
@@ -42,9 +52,9 @@ const Input = ({ value, onChange, ...props }: InputProps) => {
       <form>
         <DefaultInput
           type="text"
-          placeholder="aasdf"
           value={value}
           onChange={onChange}
+          // hover={hover}
           {...props}
         />
       </form>

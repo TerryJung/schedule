@@ -1,16 +1,12 @@
-import React from "react";
-import "./App.css";
-import Input from "./components/atoms/Input";
-import GlobalFonts from "./fonts";
-import Schedule from "./pages/Schedule";
+import React from 'react';
+import GlobalFonts from './fonts';
+import Schedule from './pages/Schedule';
 
 function App() {
   return (
-    <div className="App">
+    <div style={{ padding: 40 }}>
       <GlobalFonts />
-      <header className="App-header">
-        <Schedule />
-      </header>
+      <Schedule />
     </div>
   );
 }
