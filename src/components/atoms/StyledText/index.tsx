@@ -1,13 +1,15 @@
-import React from 'react';
-import styled from 'styled-components';
-import Text, { TextProps } from '../Text';
+import React from "react";
+import styled from "styled-components";
+import Text, { TextProps } from "../Text";
 
 export interface StyledTextProps extends TextProps {
   width?: number;
 }
 
 const Container = styled.div<StyledTextProps>`
-  height: 30px;
+  /* min-height: 30px; */
+  height: ${({ size }) => (size ? size + 17 : 30)}px;
+  /* height: 50px; */
   background: #ffffff;
   border: 1px solid #dcdcdc;
   border-radius: 5px;
@@ -18,17 +20,17 @@ const Container = styled.div<StyledTextProps>`
 
 const StyledText = ({
   children,
-  color = 'black',
+  color = "black",
   size = 13,
   style,
   width,
 }: StyledTextProps) => {
   return (
-    <Container width={width}>
+    <Container width={width} size={size} style={style}>
       <Text
         color={color}
         size={size}
-        style={{ overflow: 'hidden', textAlign: 'center', width, ...style }}
+        style={{ overflow: "hidden", textAlign: "center", width }}
       >
         {children}
       </Text>
