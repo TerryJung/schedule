@@ -13,6 +13,10 @@ const IconContainer = styled.div`
   right: 5px;
 `;
 
+const EmptySpace = styled.div`
+  height: 30px;
+`;
+
 interface InputWithIconProps extends InputProps {
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -55,6 +59,8 @@ const InputWithIcon = ({
           />
         </IconContainer>
       </Container>
+      <EmptySpace />
+
       <div style={{ position: 'absolute' }}></div>
     </div>
   );
