@@ -5,6 +5,8 @@ import MoleculesInputWithIcon from "./MoleculesInputWithIcon";
 import MoleculesInputWithLabel from "./MoleculesInputWithLabel";
 import MoleculesDropDownItem from "./MoleculesDropDownItem";
 import MoleculesDropDownItemList from "./MoleculesDropDownItemList";
+import MoleculesDropDown from "./MoleculesDropDown";
+import MoleculesStyledTextWithIcon from "./MoleculesStyledTextWithIcon";
 
 const Molecules = () => {
   return (
@@ -13,10 +15,12 @@ const Molecules = () => {
         Molecules
       </Label>
       <MoleculesTextWithIcon />
+      <MoleculesStyledTextWithIcon />
       <MoleculesInputWithIcon />
       <MoleculesInputWithLabel />
       <MoleculesDropDownItem />
       <MoleculesDropDownItemList />
+      <MoleculesDropDown />
     </>
   );
 };

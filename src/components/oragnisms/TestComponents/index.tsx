@@ -10,7 +10,6 @@ import Text from "../../atoms/Text/index";
 import Dropdown from "../../molecules/Dropdown/index";
 import StyledText from "../../atoms/StyledText/index";
 import TextWithIcon from "../../molecules/TextWithIcon";
-import DropdownItemList from "../../molecules/DropdownItemList";
 
 const TestComponents = () => {
   const [scheduleName, setScheduleName] = useState("");
@@ -80,8 +79,8 @@ const TestComponents = () => {
         onChange={(e) => setInputWithLabelValue(e.target.value)}
         labelText={"InputWithLabel"}
       />
-      <Dropdown labelText="진료실" />
-      <Dropdown labelText="고장난진료실" disabled />
+      {/* <Dropdown labelText="진료실" />
+      <Dropdown labelText="고장난진료실" disabled /> */}
     </div>
   );
 };

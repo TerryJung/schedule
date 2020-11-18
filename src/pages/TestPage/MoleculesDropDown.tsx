@@ -1,13 +1,14 @@
 import React from "react";
 import Label from "../../components/atoms/Label/index";
 import styled from "styled-components";
-import DropdownItemList from "../../components/molecules/DropdownItemList/index";
+import Dropdown from "../../components/molecules/Dropdown/index";
+import DropdownHead from "../../components/molecules/Dropdown/DropdownHead";
 
 const FlexRowContainer = styled.div`
   display: flex;
 `;
 
-const MoleculesDropDownItemList = () => {
+const MoleculesDropDown = () => {
   const dropdownList = [
     "Text1",
     "Text2",
@@ -22,14 +23,15 @@ const MoleculesDropDownItemList = () => {
   return (
     <>
       <Label color="#232323" size={20}>
-        Molecules - DropdownItemList
+        Molecules - Dropdown
       </Label>
       <FlexRowContainer>
-        <DropdownItemList width={150} texts={dropdownList} />
-        <DropdownItemList width={200} texts={dropdownList} />
+        {/* <Dropdown width={150} texts={dropdownList} />
+        <Dropdown width={200} texts={dropdownList} /> */}
+        <DropdownHead width={150} text="haha" />
       </FlexRowContainer>
     </>
   );
 };
 
-export default MoleculesDropDownItemList;
+export default MoleculesDropDown;
