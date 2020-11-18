@@ -2,7 +2,7 @@ import React from 'react';
 import TextWithIcon from '../TextWithIcon';
 import styled from 'styled-components';
 interface DropdownItemListProps {
-  width?: number;
+  width: number;
 }
 const Container = styled.div<DropdownItemListProps>`
   height: 180px;
@@ -25,7 +25,7 @@ const DropdownItemList = ({ width }: DropdownItemListProps) => {
   return (
     <Container width={width}>
       {list.map((text) => (
-        <TextWithIcon iconName="Check" iconColor="black" style={{ width }}>
+        <TextWithIcon iconName="Check" iconColor="black" width={width}>
           {text}
         </TextWithIcon>
       ))}

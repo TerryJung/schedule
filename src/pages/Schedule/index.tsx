@@ -18,10 +18,10 @@ const Schedule = () => {
       />
       <Icons name="Clear" color="#999999" size={100} />
       <InputWithIcon
+        width={120}
         value={scheduleName}
         onChange={(e) => setScheduleName(e.target.value)}
         size={10}
-        style={{ width: '100px' }}
         iconName="Calendar"
       />
     </div>

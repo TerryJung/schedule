@@ -1,11 +1,7 @@
-import React from "react";
-import Label from "../../components/atoms/Label/index";
-import styled from "styled-components";
-import Icons from "../../components/atoms/Icons";
-import Button from "../../components/atoms/Button/index";
-import Text from "../../components/atoms/Text/index";
-import { ButtonVariant } from "../../components/atoms/Button/index";
-import Atoms from "./Atoms";
+import React from 'react';
+import styled from 'styled-components';
+import Atoms from './Atoms';
+import Molecules from './Molecules';
 
 const FlexBasicContainer = styled.div``;
 
@@ -13,6 +9,7 @@ const TestPage = () => {
   return (
     <FlexBasicContainer>
       <Atoms />
+      <Molecules />
     </FlexBasicContainer>
   );
 };

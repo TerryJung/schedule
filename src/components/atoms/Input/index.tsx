@@ -37,14 +37,14 @@ const DefaultInput = styled.input<InputProps>`
 
 // }
 
-const Input = ({ value, onChange, ...props }: InputProps) => {
+const Input = ({ value, onChange, disabled, ...props }: InputProps) => {
   return (
     <Container>
       <form>
         <DefaultInput
           type="text"
-          value={value}
-          onChange={onChange}
+          value={!disabled ? value : ''}
+          onChange={!disabled ? onChange : () => null}
           {...props}
         />
       </form>

@@ -17,8 +17,13 @@ const IconContainer = styled.div`
   right: 5px;
 `;
 
-const EmptySpace = styled.div`
+interface EmptySpaceProps {
+  width: number;
+}
+
+const EmptySpace = styled.div<EmptySpaceProps>`
   height: 30px;
+  width: ${({ width }) => width}px;
 `;
 
 interface InputWithIconProps extends InputProps {
@@ -26,6 +31,7 @@ interface InputWithIconProps extends InputProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   iconName: keyof typeof iconList;
   iconColor?: string;
+  width: number;
 }
 
 const InputWithIcon = ({
@@ -34,6 +40,7 @@ const InputWithIcon = ({
   style,
   iconName,
   iconColor,
+  width,
   ...props
 }: InputWithIconProps) => {
   const [hover, setHover] = useState(false);
@@ -50,6 +57,7 @@ const InputWithIcon = ({
           onChange={onChange}
           style={{
             ...style,
+            width,
             paddingRight: 29,
             borderColor: hover ? hoverColor : undefined,
           }}
@@ -63,7 +71,7 @@ const InputWithIcon = ({
           />
         </IconContainer>
       </Container>
-      <EmptySpace />
+      <EmptySpace width={width} />
     </Wrapper>
   );
 };
