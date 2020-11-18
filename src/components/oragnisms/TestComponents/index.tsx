@@ -1,30 +1,30 @@
-import React, { useState } from 'react';
-import Icons from '../../../components/atoms/Icons';
-import Input from '../../../components/atoms/Input';
-import InputWithIcon from '../../../components/molecules/InputWithIcon/index';
-import Label from '../../atoms/Label';
-import InputWithLabel from '../../molecules/InputWithLabel';
-import Button from '../../atoms/Button/index';
-import { ButtonVariant } from '../../atoms/Button/index';
-import Text from '../../atoms/Text/index';
-import Dropdown from '../../molecules/Dropdown/index';
-import StyledText from '../../atoms/StyledText/index';
-import TextWithIcon from '../../molecules/TextWithIcon';
-import DropdownItemList from '../../molecules/DropdownItemList';
+import React, { useState } from "react";
+import Icons from "../../../components/atoms/Icons";
+import Input from "../../../components/atoms/Input";
+import InputWithIcon from "../../../components/molecules/InputWithIcon/index";
+import Label from "../../atoms/Label";
+import InputWithLabel from "../../molecules/InputWithLabel";
+import Button from "../../atoms/Button/index";
+import { ButtonVariant } from "../../atoms/Button/index";
+import Text from "../../atoms/Text/index";
+import Dropdown from "../../molecules/Dropdown/index";
+import StyledText from "../../atoms/StyledText/index";
+import TextWithIcon from "../../molecules/TextWithIcon";
+import DropdownItemList from "../../molecules/DropdownItemList";
 
 const TestComponents = () => {
-  const [scheduleName, setScheduleName] = useState('');
-  const [inputWithLabelValue, setInputWithLabelValue] = useState('');
+  const [scheduleName, setScheduleName] = useState("");
+  const [inputWithLabelValue, setInputWithLabelValue] = useState("");
 
   console.log(scheduleName);
 
   return (
-    <div style={{ verticalAlign: 'top' }}>
+    <div style={{ verticalAlign: "top" }}>
       <Input
         value={scheduleName}
         onChange={(e) => setScheduleName(e.target.value)}
         size={10}
-        style={{ width: '500px' }}
+        style={{ width: "500px" }}
       />
       <Icons name="Clear" color="#999999" size={100} />
       <InputWithIcon
@@ -32,7 +32,7 @@ const TestComponents = () => {
         value={scheduleName}
         onChange={(e) => setScheduleName(e.target.value)}
         size={10}
-        style={{ width: '100px' }}
+        style={{ width: "100px" }}
         iconName="Calendar"
       />
       <Label color="blue" size={30}>
@@ -61,7 +61,7 @@ const TestComponents = () => {
         TextWithIcon
       </TextWithIcon>
       <TextWithIcon
-        style={{ color: '#609FFF', width: 170 }}
+        style={{ color: "#609FFF", width: 170 }}
         iconColor="#609FFF"
         iconName="Check"
         width={180}
@@ -72,15 +72,13 @@ const TestComponents = () => {
       <Label color="#232323" size={20}>
         Molecules - DropdownItemList
       </Label>
-      <DropdownItemList width={150} />
-
       <Label color="#232323" size={20}>
         Molecules - InputWithLabel
       </Label>
       <InputWithLabel
         value={inputWithLabelValue}
         onChange={(e) => setInputWithLabelValue(e.target.value)}
-        labelText={'InputWithLabel'}
+        labelText={"InputWithLabel"}
       />
       <Dropdown labelText="진료실" />
       <Dropdown labelText="고장난진료실" disabled />

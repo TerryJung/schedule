@@ -1,8 +1,10 @@
-import React from 'react';
-import Label from '../../components/atoms/Label/index';
-import MoleculesTextWithIcon from './MoleculesTextWithIcon';
-import MoleculesInputWithIcon from './MoleculesInputWithIcon';
-import MoleculesInputWithLabel from './MoleculesInputWithLabel';
+import React from "react";
+import Label from "../../components/atoms/Label/index";
+import MoleculesTextWithIcon from "./MoleculesTextWithIcon";
+import MoleculesInputWithIcon from "./MoleculesInputWithIcon";
+import MoleculesInputWithLabel from "./MoleculesInputWithLabel";
+import MoleculesDropDownItem from "./MoleculesDropDownItem";
+import MoleculesDropDownItemList from "./MoleculesDropDownItemList";
 
 const Molecules = () => {
   return (
@@ -13,6 +15,8 @@ const Molecules = () => {
       <MoleculesTextWithIcon />
       <MoleculesInputWithIcon />
       <MoleculesInputWithLabel />
+      <MoleculesDropDownItem />
+      <MoleculesDropDownItemList />
     </>
   );
 };

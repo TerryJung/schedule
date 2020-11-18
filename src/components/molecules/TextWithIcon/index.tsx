@@ -1,8 +1,8 @@
-import React from 'react';
-import Icons from '../../atoms/Icons/index';
-import styled from 'styled-components';
-import Text, { TextProps } from '../../atoms/Text/index';
-import { iconList } from '../../atoms/Icons/index';
+import React from "react";
+import Icons from "../../atoms/Icons/index";
+import styled from "styled-components";
+import Text, { TextProps } from "../../atoms/Text/index";
+import { iconList } from "../../atoms/Icons/index";
 
 interface TextWithIconProps extends TextProps {
   iconColor: string;
@@ -43,19 +43,19 @@ const TextWithIcon = ({
   width,
 }: TextWithIconProps) => {
   return (
-    <div style={{ borderWidth: 1, borderColor: 'black' }}>
+    <div style={{ borderWidth: 1, borderColor: "black" }}>
       <Wrapper>
         <Container>
           <Text
             size={13}
             style={{
               ...style,
-              boxSizing: 'border-box',
-              width: width - 43,
+              boxSizing: "border-box",
+              width: width - 44,
               margin: 5,
               marginLeft: 10,
-              marginRight: 33,
-              overflow: 'hidden',
+              marginRight: 34,
+              overflow: "hidden",
             }}
           >
             {children}
