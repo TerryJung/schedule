@@ -1,19 +1,22 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from "react";
 
 function useKeyDown(keyCode: number, callback: () => void) {
-  function eventHandler(event: KeyboardEvent) {
-    if (event.keyCode === keyCode) {
-      callback();
-    }
-  }
+  const eventHandler = useCallback(
+    (event: KeyboardEvent) => {
+      if (event.keyCode === keyCode) {
+        callback();
+      }
+    },
+    [keyCode, callback]
+  );
 
   useEffect(() => {
-    document.addEventListener('keydown', eventHandler, false);
+    document.addEventListener("keydown", eventHandler, false);
 
     return () => {
-      document.removeEventListener('keydown', eventHandler, false);
+      document.removeEventListener("keydown", eventHandler, false);
     };
-  }, []);
+  }, [eventHandler]);
 }
 
 export default useKeyDown;

@@ -26,9 +26,9 @@ const MoleculesDropDown = () => {
         Molecules - Dropdown
       </Label>
       <FlexRowContainer>
-        {/* <Dropdown width={150} texts={dropdownList} />
-        <Dropdown width={200} texts={dropdownList} /> */}
-        <DropdownHead width={150} text="haha" />
+        <Dropdown width={150} list={dropdownList} />
+        <Dropdown width={200} label="진료실" list={dropdownList} />
+        <Dropdown width={200} label="진료실" disabled list={dropdownList} />
       </FlexRowContainer>
     </>
   );

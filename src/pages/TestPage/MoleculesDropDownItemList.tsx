@@ -25,8 +25,8 @@ const MoleculesDropDownItemList = () => {
         Molecules - DropdownItemList
       </Label>
       <FlexRowContainer>
-        <DropdownItemList width={150} texts={dropdownList} />
-        <DropdownItemList width={200} texts={dropdownList} />
+        <DropdownItemList width={150} list={dropdownList} />
+        <DropdownItemList width={200} list={dropdownList} />
       </FlexRowContainer>
     </>
   );

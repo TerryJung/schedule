@@ -3,7 +3,7 @@ import styled from "styled-components";
 import DropdownItem from "../DropdownItem";
 interface DropdownItemListProps {
   width: number;
-  texts: string[];
+  list: string[];
 }
 
 interface ContainerProps {
@@ -22,7 +22,7 @@ const Container = styled.div<ContainerProps>`
   border-radius: 5px;
 `;
 
-const DropdownItemList = ({ width, texts }: DropdownItemListProps) => {
+const DropdownItemList = ({ width, list }: DropdownItemListProps) => {
   const [selected, setSelected] = useState<number | null>(null);
 
   function handleClick(index: number) {
@@ -36,7 +36,7 @@ const DropdownItemList = ({ width, texts }: DropdownItemListProps) => {
 
   return (
     <Container width={width}>
-      {texts.map((text, index) => (
+      {list.map((text, index) => (
         <DropdownItem
           text={text}
           selected={index === selected}

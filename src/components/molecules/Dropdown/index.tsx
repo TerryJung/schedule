@@ -6,36 +6,26 @@ import Label from "../../atoms/Label";
 import Text from "../../atoms/Text/index";
 import useClickOutsideComponet from "../../../hooks/useClickOutsideComponet";
 import useKeyDown from "../../../hooks/useKeyDown";
+import DropdownHead from "./DropdownHead";
+import DropdownItemList from "../DropdownItemList/index";
 
 interface DropdownProps {
-  labelText?: string;
   disabled?: boolean;
   width: number;
+  list: string[];
+  label?: string;
 }
 
-const Controler = styled.div`
-  display: inline-block;
-`;
+const Controler = styled.div``;
 
 interface ContainerProps {
   disabled?: boolean;
 }
 const Container = styled.div<ContainerProps>`
-  position: absolute;
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 `;
 
-const IconContainer = styled.div`
-  position: absolute;
-  top: 3px;
-  right: 5px;
-`;
-
-const EmptySpace = styled.div`
-  height: 30px;
-`;
-
-const Dropdown = ({ labelText, disabled, width, ...props }: DropdownProps) => {
+const Dropdown = ({ label, disabled, width, list }: DropdownProps) => {
   const [toggled, setToggled] = useState(false);
 
   const wrapperRef = useRef(null);
@@ -50,27 +40,15 @@ const Dropdown = ({ labelText, disabled, width, ...props }: DropdownProps) => {
   };
 
   return (
-    <>
-      {labelText && <Label color="#999999">{labelText}</Label>}
+    <div>
+      {label && <Label color="#999999">{label}</Label>}
       <Controler onClick={handleToggleOn} ref={wrapperRef}>
         <Container disabled={disabled}>
-          <StyledText style={{ textAlign: "left", paddingRight: 19 }}>
-            진료실1ㅁㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹ
-          </StyledText>
-          <IconContainer>
-            <Icons name="LineArrowDown" size={24} />
-          </IconContainer>
+          <DropdownHead width={width} />
         </Container>
-        <EmptySpace />
-        {toggled && (
-          <div className="content">
-            <Text>haha</Text>
-            <Text>haha</Text>
-            <Text>haha</Text>
-          </div>
-        )}
+        {toggled && <DropdownItemList list={list} width={width} />}
       </Controler>
-    </>
+    </div>
   );
 };
 
