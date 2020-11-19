@@ -4,6 +4,7 @@ function useKeyDown(keyCode: number, callback: () => void) {
   const eventHandler = useCallback(
     (event: KeyboardEvent) => {
       if (event.keyCode === keyCode) {
+        event.preventDefault();
         callback();
       }
     },

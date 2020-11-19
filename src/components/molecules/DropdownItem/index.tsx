@@ -33,29 +33,6 @@ const DropdownItem = ({
   onClick,
   keyboardSelected = false,
 }: DropdownItemProps) => {
-  // const Component = (
-  //   <Container selected={selected} keyboardSelected={keyboardSelected}>
-  //     <TextWithIcon
-  //       iconColor={selected ? "#609FFF" : "white"}
-  //       iconName="Check"
-  //       width={width}
-  //     >
-  //       {text}
-  //     </TextWithIcon>
-  //   </Container>
-  // );
-
-  const SelectedComponent = (
-    <TextWithIcon
-      style={{ color: "#609FFF" }}
-      iconColor="#609FFF"
-      iconName="Check"
-      width={width}
-    >
-      {text}
-    </TextWithIcon>
-  );
-
   return (
     <Container
       selected={selected}

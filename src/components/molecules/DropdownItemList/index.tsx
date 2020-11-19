@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import DropdownItem from "../DropdownItem";
 import { useEffect } from "react";
+import useKeyDown from "../../../hooks/useKeyDown";
 export interface DropdownItemListProps {
   width: number;
   list: string[];
@@ -40,6 +41,19 @@ const DropdownItemList = ({
       setSelected(0);
     }
   }, [autoSelect, selected, setSelected]);
+
+  useKeyDown(38, () =>
+    setKeyboardSelected(keyboardSelected !== 0 ? keyboardSelected - 1 : 0)
+  );
+  useKeyDown(40, () =>
+    setKeyboardSelected(
+      keyboardSelected !== list.length - 1
+        ? keyboardSelected + 1
+        : keyboardSelected
+    )
+  );
+
+  useKeyDown(13, () => handleClick(keyboardSelected));
 
   function handleClick(index: number) {
     if (selected === index && !autoSelect) {

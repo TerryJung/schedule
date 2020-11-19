@@ -19,7 +19,7 @@ const Molecules = () => {
       <MoleculesInputWithIcon />
       <MoleculesInputWithLabel />
       <MoleculesDropdownItem />
-      <MoleculesDropdownItemList />
+      {/* <MoleculesDropdownItemList /> */}
       <MoleculesDropdown />
     </>
   );
