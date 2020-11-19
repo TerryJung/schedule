@@ -1,17 +1,23 @@
-import React, { useRef, useState } from 'react';
-import styled from 'styled-components';
-import Label from '../../atoms/Label';
-import useClickOutsideComponet from '../../../hooks/useClickOutsideComponet';
-import useKeyDown from '../../../hooks/useKeyDown';
-import DropdownHead from './DropdownHead';
-import DropdownItemList from '../DropdownItemList/index';
+import React, { useRef, useState } from "react";
+import styled from "styled-components";
+import Label from "../../atoms/Label";
+import useClickOutsideComponet from "../../../hooks/useClickOutsideComponet";
+import useKeyDown from "../../../hooks/useKeyDown";
+import DropdownHead from "./DropdownHead";
+import DropdownItemList, { DropdownItemListProps } from "../DropdownItemList";
 
-interface DropdownProps {
+export enum Direction {
+  Up = "Up",
+  Down = "Down",
+  Left = "Left",
+  Right = "Right",
+  Overlap = "Overlap",
+}
+interface DropdownProps extends DropdownItemListProps {
   disabled?: boolean;
-  width: number;
-  list: string[];
   label?: string;
   placeholder?: string;
+  direction?: Direction | keyof typeof Direction;
 }
 
 const Controler = styled.div``;
@@ -19,8 +25,29 @@ const Controler = styled.div``;
 interface ContainerProps {
   disabled?: boolean;
 }
+
 const Container = styled.div<ContainerProps>`
-  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
+`;
+
+const styleByDirection = {
+  [Direction.Down]: () => "top: -2px;",
+  [Direction.Up]: () => "top: -208px;",
+  [Direction.Overlap]: () => "top: -30px;",
+  [Direction.Left]: ({ width }: { width: number }) =>
+    `left: -${width - 2}px; top: -30px;`,
+  [Direction.Right]: ({ width }: { width: number }) =>
+    `left: ${width - 2}px; top: -30px;`,
+};
+
+interface ItemListContainerProps {
+  width: number;
+  direction: Direction | keyof typeof Direction;
+}
+
+const ItemListContainer = styled.div<ItemListContainerProps>`
+  position: relative;
+  ${({ direction, width }) => styleByDirection[direction]({ width })}
 `;
 
 const Dropdown = ({
@@ -29,6 +56,10 @@ const Dropdown = ({
   width,
   list,
   placeholder,
+  autoSelect,
+  selected,
+  setSelected,
+  direction = Direction.Down,
 }: DropdownProps) => {
   const [toggled, setToggled] = useState(false);
 
@@ -36,8 +67,6 @@ const Dropdown = ({
 
   useClickOutsideComponet(wrapperRef, () => setToggled(false));
   useKeyDown(27, () => setToggled(false));
-
-  console.log(toggled);
 
   const handleToggleOn = () => {
     if (!disabled) setToggled(true);
@@ -48,9 +77,23 @@ const Dropdown = ({
       {label && <Label color="#999999">{label}</Label>}
       <Controler onClick={handleToggleOn} ref={wrapperRef}>
         <Container disabled={disabled}>
-          <DropdownHead width={width} placeholder={placeholder} />
+          <DropdownHead
+            width={width}
+            placeholder={placeholder}
+            text={selected !== null ? list[selected] : undefined}
+          />
         </Container>
-        {toggled && <DropdownItemList list={list} width={width} />}
+        {toggled && (
+          <ItemListContainer direction={direction} width={width}>
+            <DropdownItemList
+              list={list}
+              width={width}
+              selected={selected}
+              setSelected={setSelected}
+              autoSelect={autoSelect}
+            />
+          </ItemListContainer>
+        )}
       </Controler>
     </div>
   );

@@ -1,6 +1,6 @@
-import React from 'react';
-import Label from '../../atoms/Label';
-import StyledTextWithIcon from '../StyledTextWithIcon';
+import React from "react";
+import Label from "../../atoms/Label";
+import StyledTextWithIcon from "../StyledTextWithIcon";
 
 interface DropdownHeadProps {
   text?: string;
@@ -22,10 +22,10 @@ const DropdownHead = ({
         width={width}
         iconName="LineArrowDown"
         iconColor="#999999"
-        style={{ color: placeholder ? '#DCDCDC' : undefined }}
+        style={{ color: !text && placeholder ? "#DCDCDC" : undefined }}
         // color={}
       >
-        {text || placeholder || ''}
+        {text || placeholder || ""}
       </StyledTextWithIcon>
     </>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 import TextWithIcon from "../TextWithIcon";
+import styled from "styled-components";
 
 interface DropdownItemProps {
   text: string;
@@ -7,6 +8,13 @@ interface DropdownItemProps {
   width: number;
   onClick?: () => void;
 }
+
+const Container = styled.div`
+  :hover {
+    background: rgba(0, 0, 0, 0.03);
+  }
+`;
+
 const DropdownItem = ({
   text,
   selected,
@@ -14,9 +22,11 @@ const DropdownItem = ({
   onClick,
 }: DropdownItemProps) => {
   const Component = (
-    <TextWithIcon iconColor="white" iconName="Check" width={width}>
-      {text}
-    </TextWithIcon>
+    <Container>
+      <TextWithIcon iconColor="white" iconName="Check" width={width}>
+        {text}
+      </TextWithIcon>
+    </Container>
   );
 
   const SelectedComponent = (

@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import DropdownItem from "../DropdownItem";
-interface DropdownItemListProps {
+import { useEffect } from "react";
+export interface DropdownItemListProps {
   width: number;
   list: string[];
+  selected: number | null;
+  setSelected: React.Dispatch<React.SetStateAction<number | null>>;
+  autoSelect?: boolean;
 }
 
 interface ContainerProps {
@@ -22,12 +26,21 @@ const Container = styled.div<ContainerProps>`
   border-radius: 5px;
 `;
 
-const DropdownItemList = ({ width, list }: DropdownItemListProps) => {
-  const [selected, setSelected] = useState<number | null>(null);
+const DropdownItemList = ({
+  width,
+  list,
+  selected,
+  setSelected,
+  autoSelect = true,
+}: DropdownItemListProps) => {
+  useEffect(() => {
+    if (autoSelect && selected === null) {
+      setSelected(0);
+    }
+  }, [autoSelect, selected, setSelected]);
 
   function handleClick(index: number) {
-    console.log(index, selected);
-    if (selected === index) {
+    if (selected === index && !autoSelect) {
       setSelected(null);
     } else {
       setSelected(index);
@@ -38,6 +51,7 @@ const DropdownItemList = ({ width, list }: DropdownItemListProps) => {
     <Container width={width}>
       {list.map((text, index) => (
         <DropdownItem
+          key={`${text}${index}`}
           text={text}
           selected={index === selected}
           width={width}
