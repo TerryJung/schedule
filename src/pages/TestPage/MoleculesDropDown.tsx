@@ -7,7 +7,7 @@ const FlexRowContainer = styled.div`
   display: flex;
 `;
 
-const MoleculesDropDown = () => {
+const MoleculesDropdown = () => {
   const dropdownList = [
     'Text1',
     'Text2',
@@ -28,9 +28,15 @@ const MoleculesDropDown = () => {
         <Dropdown width={150} list={dropdownList} />
         <Dropdown width={200} label="진료실" list={dropdownList} />
         <Dropdown width={200} label="진료실" disabled list={dropdownList} />
+        <Dropdown
+          width={200}
+          label="진료실"
+          list={dropdownList}
+          placeholder="아무것도 선택되지 않음"
+        />
       </FlexRowContainer>
     </>
   );
 };
 
-export default MoleculesDropDown;
+export default MoleculesDropdown;

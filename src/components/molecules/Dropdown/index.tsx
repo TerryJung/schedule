@@ -11,6 +11,7 @@ interface DropdownProps {
   width: number;
   list: string[];
   label?: string;
+  placeholder?: string;
 }
 
 const Controler = styled.div``;
@@ -22,7 +23,13 @@ const Container = styled.div<ContainerProps>`
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
 `;
 
-const Dropdown = ({ label, disabled, width, list }: DropdownProps) => {
+const Dropdown = ({
+  label,
+  disabled,
+  width,
+  list,
+  placeholder,
+}: DropdownProps) => {
   const [toggled, setToggled] = useState(false);
 
   const wrapperRef = useRef(null);
@@ -41,7 +48,7 @@ const Dropdown = ({ label, disabled, width, list }: DropdownProps) => {
       {label && <Label color="#999999">{label}</Label>}
       <Controler onClick={handleToggleOn} ref={wrapperRef}>
         <Container disabled={disabled}>
-          <DropdownHead width={width} />
+          <DropdownHead width={width} placeholder={placeholder} />
         </Container>
         {toggled && <DropdownItemList list={list} width={width} />}
       </Controler>
