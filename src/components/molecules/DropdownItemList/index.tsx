@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import DropdownItem from "../DropdownItem";
 import { useEffect } from "react";
@@ -33,6 +33,8 @@ const DropdownItemList = ({
   setSelected,
   autoSelect = true,
 }: DropdownItemListProps) => {
+  const [keyboardSelected, setKeyboardSelected] = useState(0);
+
   useEffect(() => {
     if (autoSelect && selected === null) {
       setSelected(0);
@@ -54,6 +56,7 @@ const DropdownItemList = ({
           key={`${text}${index}`}
           text={text}
           selected={index === selected}
+          keyboardSelected={index === keyboardSelected}
           width={width}
           onClick={() => handleClick(index)}
         />

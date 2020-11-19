@@ -1,7 +1,7 @@
-import React from 'react';
-import Label from '../../components/atoms/Label/index';
-import styled from 'styled-components';
-import DropdownItem from '../../components/molecules/DropdownItem';
+import React from "react";
+import Label from "../../components/atoms/Label/index";
+import styled from "styled-components";
+import DropdownItem from "../../components/molecules/DropdownItem";
 
 const FlexRowContainer = styled.div`
   display: flex;

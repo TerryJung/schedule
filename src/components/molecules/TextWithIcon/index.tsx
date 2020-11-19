@@ -6,7 +6,7 @@ import { iconList } from "../../atoms/Icons/index";
 
 interface TextWithIconProps extends TextProps {
   iconColor: string;
-  iconName: keyof typeof iconList;
+  iconName: keyof typeof iconList | null;
   width: number;
 }
 
@@ -43,30 +43,30 @@ const TextWithIcon = ({
   width,
 }: TextWithIconProps) => {
   return (
-    <div style={{ borderWidth: 1, borderColor: "black" }}>
-      <Wrapper>
-        <Container>
-          <Text
-            size={13}
-            style={{
-              ...style,
-              boxSizing: "border-box",
-              width: width - 44,
-              margin: 5,
-              marginLeft: 10,
-              marginRight: 34,
-              overflow: "hidden",
-            }}
-          >
-            {children}
-          </Text>
+    <Wrapper>
+      <Container>
+        <Text
+          size={13}
+          style={{
+            ...style,
+            boxSizing: "border-box",
+            width: width - 44,
+            margin: 5,
+            marginLeft: 10,
+            marginRight: 34,
+            overflow: "hidden",
+          }}
+        >
+          {children}
+        </Text>
+        {iconName && (
           <IconContainer>
             <Icons name={iconName} color={iconColor} size={24} />
           </IconContainer>
-        </Container>
-        <EmptySpace width={width} />
-      </Wrapper>
-    </div>
+        )}
+      </Container>
+      <EmptySpace width={width} />
+    </Wrapper>
   );
 };
 

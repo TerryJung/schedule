@@ -5,14 +5,25 @@ import styled from "styled-components";
 interface DropdownItemProps {
   text: string;
   selected: boolean;
+  keyboardSelected?: boolean;
   width: number;
   onClick?: () => void;
 }
 
-const Container = styled.div`
+interface ContainerProps {
+  selected: boolean;
+  keyboardSelected: boolean;
+}
+
+const Container = styled.div<ContainerProps>`
+  background: ${({ keyboardSelected }) =>
+    keyboardSelected ? "rgba(96, 159, 255, 0.15)" : "white"};
+  color: ${({ selected }) => (selected ? "#609FFF" : "black")};
   :hover {
     background: rgba(0, 0, 0, 0.03);
   }
+  box-sizing: "border-box";
+  width: 100%;
 `;
 
 const DropdownItem = ({
@@ -20,14 +31,19 @@ const DropdownItem = ({
   selected,
   width,
   onClick,
+  keyboardSelected = false,
 }: DropdownItemProps) => {
-  const Component = (
-    <Container>
-      <TextWithIcon iconColor="white" iconName="Check" width={width}>
-        {text}
-      </TextWithIcon>
-    </Container>
-  );
+  // const Component = (
+  //   <Container selected={selected} keyboardSelected={keyboardSelected}>
+  //     <TextWithIcon
+  //       iconColor={selected ? "#609FFF" : "white"}
+  //       iconName="Check"
+  //       width={width}
+  //     >
+  //       {text}
+  //     </TextWithIcon>
+  //   </Container>
+  // );
 
   const SelectedComponent = (
     <TextWithIcon
@@ -41,7 +57,19 @@ const DropdownItem = ({
   );
 
   return (
-    <div onClick={onClick}>{selected ? SelectedComponent : Component}</div>
+    <Container
+      selected={selected}
+      keyboardSelected={keyboardSelected}
+      onClick={onClick}
+    >
+      <TextWithIcon
+        iconColor={selected ? "#609FFF" : "white"}
+        iconName={selected ? "Check" : null}
+        width={width}
+      >
+        {text}
+      </TextWithIcon>
+    </Container>
   );
 };
 
