@@ -1,13 +1,10 @@
-import React, { useRef, useState } from "react";
-import Icons from "../../atoms/Icons/index";
-import styled from "styled-components";
-import StyledText from "../../atoms/StyledText/index";
-import Label from "../../atoms/Label";
-import Text from "../../atoms/Text/index";
-import useClickOutsideComponet from "../../../hooks/useClickOutsideComponet";
-import useKeyDown from "../../../hooks/useKeyDown";
-import DropdownHead from "./DropdownHead";
-import DropdownItemList from "../DropdownItemList/index";
+import React, { useRef, useState } from 'react';
+import styled from 'styled-components';
+import Label from '../../atoms/Label';
+import useClickOutsideComponet from '../../../hooks/useClickOutsideComponet';
+import useKeyDown from '../../../hooks/useKeyDown';
+import DropdownHead from './DropdownHead';
+import DropdownItemList from '../DropdownItemList/index';
 
 interface DropdownProps {
   disabled?: boolean;
@@ -22,7 +19,7 @@ interface ContainerProps {
   disabled?: boolean;
 }
 const Container = styled.div<ContainerProps>`
-  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
 `;
 
 const Dropdown = ({ label, disabled, width, list }: DropdownProps) => {
