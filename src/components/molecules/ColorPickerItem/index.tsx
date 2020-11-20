@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import Text from '../../atoms/Text/index';
 import Circle from '../../atoms/Circle/index';
+import TextWithIcon from '../TextWithIcon/index';
 
 interface ColorPickerItemProps {
   text: string;
   color: string;
   circleSize?: number;
   selected: boolean;
+  width: number;
   keyboardSelected?: boolean;
   onClick?: () => void;
 }
@@ -40,6 +41,7 @@ const ColorPickerItem = ({
   circleSize = 16,
   selected,
   onClick,
+  width,
   keyboardSelected = false,
 }: ColorPickerItemProps) => {
   return (
@@ -52,7 +54,13 @@ const ColorPickerItem = ({
         <Circle color={color} size={circleSize} />
       </CircleContainer>
 
-      <Text size={13}>{text}</Text>
+      <TextWithIcon
+        iconColor={selected ? '#609FFF' : 'white'}
+        iconName={selected ? 'Check' : null}
+        width={width - 31}
+      >
+        {text}
+      </TextWithIcon>
     </Container>
   );
 };

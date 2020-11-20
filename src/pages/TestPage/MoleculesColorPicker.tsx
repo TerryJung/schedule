@@ -38,7 +38,7 @@ const MoleculesColorPicker = () => {
       </Label>
       <FlexRowContainer>
         <ColorPicker
-          width={150}
+          width={100}
           list={colorPickerList}
           selected={selected1}
           setSelected={setSelected1}

@@ -8,19 +8,10 @@ import ColorPickerItemList, {
   ColorPickerItemListProps,
 } from '../ColorPickerItemList';
 
-export enum Direction {
-  Up = 'Up',
-  Down = 'Down',
-  Left = 'Left',
-  Right = 'Right',
-  Overlap = 'Overlap',
-}
-
 interface ColorPickerProps extends ColorPickerItemListProps {
   disabled?: boolean;
   label?: string;
   placeholder?: string;
-  direction?: Direction | keyof typeof Direction;
 }
 
 const Controler = styled.div``;
@@ -33,24 +24,13 @@ const Container = styled.div<ContainerProps>`
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
 `;
 
-const styleByDirection = {
-  [Direction.Down]: () => 'top: -2px;',
-  [Direction.Up]: () => 'top: -208px;',
-  [Direction.Overlap]: () => 'top: -30px;',
-  [Direction.Left]: ({ width }: { width: number }) =>
-    `left: -${width - 2}px; top: -30px;`,
-  [Direction.Right]: ({ width }: { width: number }) =>
-    `left: ${width - 2}px; top: -30px;`,
-};
-
 interface ItemListContainerProps {
   width: number;
-  direction: Direction | keyof typeof Direction;
 }
 
 const ItemListContainer = styled.div<ItemListContainerProps>`
   position: relative;
-  ${({ direction, width }) => styleByDirection[direction]({ width })}
+  top: -30px;
 `;
 
 const ColorPicker = ({
@@ -60,7 +40,6 @@ const ColorPicker = ({
   list,
   selected,
   setSelected,
-  direction = Direction.Down,
 }: ColorPickerProps) => {
   const [toggled, setToggled] = useState(false);
 
@@ -73,8 +52,6 @@ const ColorPicker = ({
     if (!disabled) setToggled(true);
   };
 
-  console.log(selected);
-
   return (
     <div>
       {label && <Label color="#999999">{label}</Label>}
@@ -85,14 +62,16 @@ const ColorPicker = ({
           />
         </Container>
         {toggled && (
-          <ItemListContainer direction={direction} width={width}>
-            <ColorPickerItemList
-              list={list}
-              width={width}
-              selected={selected}
-              setSelected={setSelected}
-            />
-          </ItemListContainer>
+          <Container>
+            <ItemListContainer width={width}>
+              <ColorPickerItemList
+                list={list}
+                width={width}
+                selected={selected}
+                setSelected={setSelected}
+              />
+            </ItemListContainer>
+          </Container>
         )}
       </Controler>
     </div>

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import ColorPickerItem from '../ColorPickerItem';
-import { useEffect } from 'react';
 import useKeyDown from '../../../hooks/useKeyDown';
+import Text from '../../atoms/Text';
 
 export interface ColorPickerItemListProps {
   width: number;
@@ -38,12 +38,6 @@ const ColorPickerItemList = ({
 }: ColorPickerItemListProps) => {
   const [keyboardSelected, setKeyboardSelected] = useState(0);
 
-  useEffect(() => {
-    if (selected === null) {
-      setSelected(0);
-    }
-  }, [selected, setSelected]);
-
   useKeyDown(38, () =>
     setKeyboardSelected(keyboardSelected !== 0 ? keyboardSelected - 1 : 0)
   );
@@ -58,15 +52,12 @@ const ColorPickerItemList = ({
   useKeyDown(13, () => handleClick(keyboardSelected));
 
   function handleClick(index: number) {
-    if (selected === index) {
-      setSelected(null);
-    } else {
-      setSelected(index);
-    }
+    setSelected(index);
   }
 
   return (
     <Container width={width}>
+      <Text>스케줄 색상</Text>
       {list.map(({ label, color }, index) => (
         <ColorPickerItem
           key={`${color}${index}`}
@@ -75,6 +66,7 @@ const ColorPickerItemList = ({
           selected={index === selected}
           keyboardSelected={index === keyboardSelected}
           onClick={() => handleClick(index)}
+          width={width}
         />
       ))}
     </Container>

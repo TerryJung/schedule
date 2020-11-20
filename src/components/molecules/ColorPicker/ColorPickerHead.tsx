@@ -23,7 +23,7 @@ const ColorPickerHead = ({ color, size = 24 }: ColorPickerHeadProps) => {
   return (
     <>
       {color ? (
-        <Circle color="color" size={size ? size : undefined} />
+        <Circle color={color} size={size ? size : undefined} />
       ) : (
         <Container size={size}>
           <Icons name="ColorPicker" size={size} />
