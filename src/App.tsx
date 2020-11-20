@@ -8,7 +8,7 @@ function App() {
     <div style={{ padding: 40 }}>
       <GlobalFonts />
       {/* {/* <Schedule /> */}
-      <TestComponents />
+      {/* <TestComponents /> */}
       <TestPage />
     </div>
   );

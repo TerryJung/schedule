@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import DropdownItem from '../DropdownItem';
+import ColorPickerItem from '../ColorPickerItem';
 import { useEffect } from 'react';
 import useKeyDown from '../../../hooks/useKeyDown';
-export interface DropdownItemListProps {
+
+export interface ColorPickerItemListProps {
   width: number;
-  list: string[];
+  list: {
+    label: string;
+    color: string;
+  }[];
   selected: number | null;
   setSelected: React.Dispatch<React.SetStateAction<number | null>>;
-  autoSelect?: boolean;
 }
 
 interface ContainerProps {
@@ -16,7 +19,7 @@ interface ContainerProps {
 }
 
 const Container = styled.div<ContainerProps>`
-  height: 180px;
+  max-height: 300px;
   overflow: auto;
   width: ${({ width }) => width}px;
   background: #ffffff;
@@ -25,23 +28,21 @@ const Container = styled.div<ContainerProps>`
   box-sizing: border-box;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1), 0px 2px 3px rgba(0, 0, 0, 0.05);
   border-radius: 5px;
-  cursor: pointer;
 `;
 
-const DropdownItemList = ({
+const ColorPickerItemList = ({
   width,
   list,
   selected,
   setSelected,
-  autoSelect = true,
-}: DropdownItemListProps) => {
+}: ColorPickerItemListProps) => {
   const [keyboardSelected, setKeyboardSelected] = useState(0);
 
   useEffect(() => {
-    if (autoSelect && selected === null) {
+    if (selected === null) {
       setSelected(0);
     }
-  }, [autoSelect, selected, setSelected]);
+  }, [selected, setSelected]);
 
   useKeyDown(38, () =>
     setKeyboardSelected(keyboardSelected !== 0 ? keyboardSelected - 1 : 0)
@@ -57,7 +58,7 @@ const DropdownItemList = ({
   useKeyDown(13, () => handleClick(keyboardSelected));
 
   function handleClick(index: number) {
-    if (selected === index && !autoSelect) {
+    if (selected === index) {
       setSelected(null);
     } else {
       setSelected(index);
@@ -66,13 +67,13 @@ const DropdownItemList = ({
 
   return (
     <Container width={width}>
-      {list.map((text, index) => (
-        <DropdownItem
-          key={`${text}${index}`}
-          text={text}
+      {list.map(({ label, color }, index) => (
+        <ColorPickerItem
+          key={`${color}${index}`}
+          text={label}
+          color={color}
           selected={index === selected}
           keyboardSelected={index === keyboardSelected}
-          width={width}
           onClick={() => handleClick(index)}
         />
       ))}
@@ -80,4 +81,4 @@ const DropdownItemList = ({
   );
 };
 
-export default DropdownItemList;
+export default ColorPickerItemList;
