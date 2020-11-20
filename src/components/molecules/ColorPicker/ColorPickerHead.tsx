@@ -1,7 +1,7 @@
-import React from 'react';
-import Circle from '../../atoms/Circle/index';
-import Icons from '../../atoms/Icons';
-import styled from 'styled-components';
+import React from "react";
+import Circle from "../../atoms/Circle/index";
+import Icons from "../../atoms/Icons";
+import styled from "styled-components";
 
 interface ColorPickerHeadProps {
   size?: number;
@@ -26,7 +26,7 @@ const ColorPickerHead = ({ color, size = 24 }: ColorPickerHeadProps) => {
         <Circle color={color} size={size ? size : undefined} />
       ) : (
         <Container size={size}>
-          <Icons name="ColorPicker" size={size} />
+          <Icons name="ColorPicker" color="#609FFF" size={size} />
         </Container>
       )}
     </>

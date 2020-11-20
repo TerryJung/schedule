@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import ColorPickerItem from '../ColorPickerItem';
-import useKeyDown from '../../../hooks/useKeyDown';
-import Text from '../../atoms/Text';
+import React, { useState } from "react";
+import styled from "styled-components";
+import ColorPickerItem from "../ColorPickerItem";
+import useKeyDown from "../../../hooks/useKeyDown";
+import Label from "../../atoms/Label";
 
 export interface ColorPickerItemListProps {
   width: number;
@@ -13,6 +13,13 @@ export interface ColorPickerItemListProps {
   selected: number | null;
   setSelected: React.Dispatch<React.SetStateAction<number | null>>;
 }
+
+const LabelContainer = styled.div`
+  box-sizing: border-box;
+  padding-top: 5px;
+  padding-left: 10px;
+  height: 28px;
+`;
 
 interface ContainerProps {
   width: number;
@@ -57,7 +64,11 @@ const ColorPickerItemList = ({
 
   return (
     <Container width={width}>
-      <Text>스케줄 색상</Text>
+      <LabelContainer>
+        <Label color="#999999" size={11}>
+          스케줄 색상
+        </Label>
+      </LabelContainer>
       {list.map(({ label, color }, index) => (
         <ColorPickerItem
           key={`${color}${index}`}

@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 export interface LabelProps {
   children: string;
@@ -12,7 +12,7 @@ const Container = styled.div``;
 const StyledSpan = styled.span<LabelProps>`
   height: ${({ size }) => (size ? size + 7 : 20)}px;
 
-  font-family: 'Spoqa Han Sans Regular';
+  font-family: "Spoqa Han Sans Regular";
   font-style: normal;
   font-weight: bold;
   font-size: ${({ size }) => size}px;
@@ -20,7 +20,7 @@ const StyledSpan = styled.span<LabelProps>`
   color: ${({ color }) => color};
 `;
 
-const Label = ({ children, color = 'black', size = 13 }: LabelProps) => {
+const Label = ({ children, color = "black", size = 13 }: LabelProps) => {
   return (
     <Container>
       <StyledSpan color={color} size={size}>
