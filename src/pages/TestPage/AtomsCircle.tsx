@@ -1,7 +1,7 @@
-import React from 'react';
-import Label from '../../components/atoms/Label/index';
-import styled from 'styled-components';
-import Circle from '../../components/atoms/Circle';
+import React from "react";
+import Label from "../../components/atoms/Label/index";
+import styled from "styled-components";
+import Circle from "../../components/atoms/Circle";
 
 const FlexRowContainer = styled.div`
   display: flex;
@@ -24,6 +24,14 @@ const AtomsCircle = () => {
         <Circle color="#71CBF2" />
         <Circle color="#ADD639" />
         <Circle color="#9874FF" />
+        <div style={{ width: 32 }} />
+        <Circle color="#9874FF" hover />
+        <div style={{ width: 32 }} />
+        <Circle color="#ADD639" hover />
+        <div style={{ width: 32 }} />
+        <Circle color="#71CBF2" hover />
+        <div style={{ width: 32 }} />
+        <Circle color="#CE66DF" hover />
       </FlexRowContainer>
     </>
   );
