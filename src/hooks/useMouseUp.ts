@@ -5,7 +5,7 @@ const useMouseUp = (callback: () => void) => {
     document.addEventListener("mouseup", callback);
 
     return () => document.removeEventListener("mouseup", callback);
-  }, []);
+  }, [callback]);
 };
 
 export default useMouseUp;

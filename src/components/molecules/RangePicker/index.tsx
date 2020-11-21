@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import AbsoluteRoundEndLine from '../AbsoluteRoundEndLine/index';
+import React, { useState } from "react";
+import styled from "styled-components";
+import AbsoluteRoundEndLine from "../AbsoluteRoundEndLine/index";
 
 interface LineBackgroundProps {
   width: number;
@@ -43,6 +43,7 @@ const RangePicker = ({ labels, width, number }: RangePickerProps) => {
         labels={labels}
         number={number}
       />
+      <div style={{ width }}></div>
     </Container>
   );
 };

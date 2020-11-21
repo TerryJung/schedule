@@ -5,6 +5,7 @@ export interface LabelProps {
   children: string;
   color?: string;
   size?: number;
+  noSelect?: boolean;
 }
 
 const Container = styled.div``;
@@ -18,12 +19,18 @@ const StyledSpan = styled.span<LabelProps>`
   font-size: ${({ size }) => size}px;
   line-height: ${({ size }) => (size ? size + 7 : 20)}px;
   color: ${({ color }) => color};
+  user-select: ${({ noSelect }) => (noSelect ? "none" : undefined)};
 `;
 
-const Label = ({ children, color = "black", size = 13 }: LabelProps) => {
+const Label = ({
+  children,
+  color = "black",
+  size = 13,
+  noSelect = false,
+}: LabelProps) => {
   return (
     <Container>
-      <StyledSpan color={color} size={size}>
+      <StyledSpan color={color} size={size} noSelect={noSelect}>
         {children}
       </StyledSpan>
     </Container>

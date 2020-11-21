@@ -4,6 +4,7 @@ import useMousePosition from "../../../hooks/useMousePosition";
 import useMouseUp from "../../../hooks/useMouseUp";
 import Circle from "../../atoms/Circle";
 import { useEffect } from "react";
+import Label from "../../atoms/Label";
 
 export interface RoundEndLineProps {
   labels?: string[];
@@ -19,11 +20,6 @@ export interface RoundEndLineProps {
 }
 
 const Container = styled.div``;
-
-interface ContentProps {
-  left: number;
-  right: number;
-}
 
 interface LineProps {
   width: number;
@@ -63,13 +59,17 @@ const AbsoluteRoundEndLine = ({
   right,
   onLeftChange,
   onRightChange,
+  labels,
 }: RoundEndLineProps) => {
   const [leftStatus, setLeftStatus] = useState(false);
   const [rightStatus, setRightStatus] = useState(false);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [leftOffset, setLeftOffset] = useState(0);
 
-  const { x, y } = useMousePosition();
+  const { x } = useMousePosition();
+  const interval = (rightMargin - leftMargin) / number;
+  const leftIndex = (left - leftMargin) / interval;
+  const rightIndex = (right - leftMargin) / interval;
 
   useMouseUp(() => {
     setLeftStatus(false);
@@ -77,10 +77,37 @@ const AbsoluteRoundEndLine = ({
   });
 
   useEffect(() => {
+    if (containerRef && containerRef.current) {
+      setLeftOffset(containerRef.current.getBoundingClientRect().left);
+    } else {
+      setLeftOffset(0);
+    }
+    onLeftChange(
+      filteredValue({
+        originalLeftMargin: leftMargin,
+        originalRightMargin: rightMargin,
+        number,
+        leftMargin: leftMargin - interval,
+        rightMargin: right,
+        current: left,
+      })
+    );
+
+    onRightChange(
+      filteredValue({
+        originalLeftMargin: leftMargin,
+        originalRightMargin: rightMargin,
+        number,
+        leftMargin: left,
+        rightMargin: rightMargin + interval,
+        current: right,
+      })
+    );
+  }, []);
+
+  useEffect(() => {
     if (leftStatus && x) {
       let mouseLeftPosition = x - leftOffset - 3;
-
-      const interval = (rightMargin - leftMargin) / number;
 
       onLeftChange(
         filteredValue({
@@ -109,14 +136,6 @@ const AbsoluteRoundEndLine = ({
           current: mouseLeftPosition,
         })
       );
-    }
-  });
-
-  useEffect(() => {
-    if (containerRef && containerRef.current) {
-      setLeftOffset(containerRef.current.getBoundingClientRect().left);
-    } else {
-      setLeftOffset(0);
     }
   });
 
@@ -181,6 +200,9 @@ const AbsoluteRoundEndLine = ({
           color={color}
           onMouseDown={() => setLeftStatus(true)}
         />
+        {labels && labels[leftIndex] && (
+          <Label noSelect>{labels[leftIndex]}</Label>
+        )}
       </Container>
     </>
   );
