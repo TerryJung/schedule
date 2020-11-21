@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import useMousePosition from '../../../hooks/useMousePosition';
 import useMouseUp from '../../../hooks/useMouseUp';
 import Circle from '../../atoms/Circle';
+import { useEffect } from 'react';
 
 export interface RoundEndLineProps {
   labels?: string[];
@@ -17,22 +18,20 @@ export interface RoundEndLineProps {
   color?: string;
 }
 
-const Container = styled.div`
-  display: flex;
-`;
+const Container = styled.div``;
 
 interface ContentProps {
   left: number;
   right: number;
 }
 
-interface LineWithMarginProps {
+interface LineProps {
   width: number;
   color: string;
   left: number;
 }
 
-const LineWithMargin = styled.div<LineWithMarginProps>`
+const Line = styled.div<LineProps>`
   position: absolute;
   width: ${({ width }) => width}px;
   height: 2px;
@@ -40,15 +39,19 @@ const LineWithMargin = styled.div<LineWithMarginProps>`
   left: ${({ left }) => left}px;
   background-color: ${({ color }) => color};
   box-sizing: border-box;
+  z-index: 1;
 `;
 
 interface CircleProps {
   left: number;
+  moving?: boolean;
 }
 
 const CircleContainer = styled.div<CircleProps>`
   position: absolute;
   left: ${({ left }) => left}px;
+  cursor: ew-resize;
+  z-index: 2;
 `;
 
 const SecondCircle = styled.div<ContentProps>`
@@ -70,44 +73,59 @@ const AbsoluteRoundEndLine = ({
   rightMargin,
   left,
   right,
+  onLeftChange,
+  onRightChange,
 }: RoundEndLineProps) => {
   // const [start, setStart] = useState(left);
-  const [startStatus, setStartStatus] = useState(false);
+  const [leftStatus, setLeftStatus] = useState(false);
   // const [end, setEnd] = useState(right);
   const [endStatus, setEndStatus] = useState(false);
   const { x, y } = useMousePosition();
   useMouseUp(() => {
-    setStartStatus(false);
+    setLeftStatus(false);
   });
 
-  console.log(startStatus);
-  // console.log({ x, y });
+  useEffect(() => {
+    if (leftStatus) {
+      onLeftChange(x || 0);
+    }
+  });
 
-  // console.log({ start, end });
+  console.log(leftStatus);
 
-  console.log({ left, right });
   return (
     <>
       <Container>
-        <CircleContainer left={left}>
+        <CircleContainer
+          left={left}
+          moving={leftStatus}
+          onMouseDown={() => {
+            setLeftStatus(true);
+          }}
+          onDrag={() => {
+            setLeftStatus(true);
+          }}
+          onDragEnd={() => {
+            setLeftStatus(false);
+          }}
+        >
           <Circle size={6} color="#609FFF" hover />
         </CircleContainer>
         <CircleContainer left={right - 6}>
           <Circle size={6} color="#609FFF" hover />
         </CircleContainer>
-        <LineWithMargin
+        <Line
           left={left + 5}
           width={right - left - 10}
           color={color}
+          onMouseDown={() => setLeftStatus(true)}
         />
 
         {/* <FirstCircle
         left={start}
         right={end}
         color={color}
-        onMouseDown={() => {
-          setStartStatus(true);
-        }}
+
         onMouseUp={() => {
           setStartStatus(false);
         }}
