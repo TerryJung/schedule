@@ -50,6 +50,19 @@ const CircleContainer = styled.div<CircleProps>`
   z-index: 2;
 `;
 
+interface LabelContainerProps {
+  left?: number;
+  rightAlign?: boolean;
+  secondLine?: boolean;
+}
+const LabelContainer = styled.div<LabelContainerProps>`
+  position: absolute;
+  top: ${({ secondLine }) => (secondLine ? 22 : 8)}px;
+  left: ${({ left }) => left}px;
+  width: 30px;
+  text-align: ${({ rightAlign }) => (rightAlign ? "right" : undefined)};
+`;
+
 const AbsoluteRoundEndLine = ({
   color = "#609FFF",
   leftMargin,
@@ -201,7 +214,28 @@ const AbsoluteRoundEndLine = ({
           onMouseDown={() => setLeftStatus(true)}
         />
         {labels && labels[leftIndex] && (
-          <Label noSelect>{labels[leftIndex]}</Label>
+          <>
+            <LabelContainer left={left - 3}>
+              <Label size={11} noSelect color="#609FFF">
+                {labels[leftIndex]}
+              </Label>
+            </LabelContainer>
+            <div style={{ height: 16 }}></div>
+          </>
+        )}
+        {labels && labels[rightIndex] && (
+          <>
+            <LabelContainer
+              left={right - 27}
+              rightAlign
+              secondLine={right - left < 60}
+            >
+              <Label size={11} noSelect color="#609FFF">
+                {labels[rightIndex]}
+              </Label>
+            </LabelContainer>
+            <div style={{ height: right - left < 60 ? 32 : 16 }}></div>
+          </>
         )}
       </Container>
     </>
