@@ -8,7 +8,7 @@ const FlexBasicContainer = styled.div``;
 const TestPage = () => {
   return (
     <FlexBasicContainer>
-      <Atoms />
+      {/* <Atoms /> */}
       <Molecules />
     </FlexBasicContainer>
   );

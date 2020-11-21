@@ -1,6 +1,6 @@
-import { relative } from "path";
-import React from "react";
-import styled from "styled-components";
+import { relative } from 'path';
+import React from 'react';
+import styled from 'styled-components';
 
 export interface CircleProps {
   size?: number;
