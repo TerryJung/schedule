@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import AbsoluteRoundEndLine from "../AbsoluteRoundEndLine/index";
+import useLeftOffset from "../../../hooks/useLeftOffset";
 
 interface LineBackgroundProps {
   width: number;
@@ -28,9 +29,14 @@ interface RangePickerProps {
 const RangePicker = ({ labels, width, number }: RangePickerProps) => {
   const [left, setLeft] = useState(50);
   const [right, setRight] = useState(100);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  // const [leftOffset, setLeftOffset] = useState(0);
+  const leftOffset = useLeftOffset(containerRef);
+
+  console.log({ leftOffset });
 
   return (
-    <Container>
+    <Container ref={containerRef}>
       <LineBackground width={width} />
       <AbsoluteRoundEndLine
         width={width}

@@ -5,6 +5,7 @@ import useMouseUp from "../../../hooks/useMouseUp";
 import Circle from "../../atoms/Circle";
 import { useEffect } from "react";
 import Label from "../../atoms/Label";
+import useLeftOffset from "../../../hooks/useLeftOffset";
 
 export interface RoundEndLineProps {
   labels?: string[];
@@ -77,7 +78,7 @@ const AbsoluteRoundEndLine = ({
   const [leftStatus, setLeftStatus] = useState(false);
   const [rightStatus, setRightStatus] = useState(false);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [leftOffset, setLeftOffset] = useState(0);
+  const leftOffset = useLeftOffset(containerRef);
 
   const { x } = useMousePosition();
   const interval = (rightMargin - leftMargin) / number;
@@ -90,11 +91,6 @@ const AbsoluteRoundEndLine = ({
   });
 
   useEffect(() => {
-    if (containerRef && containerRef.current) {
-      setLeftOffset(containerRef.current.getBoundingClientRect().left);
-    } else {
-      setLeftOffset(0);
-    }
     onLeftChange(
       filteredValue({
         originalLeftMargin: leftMargin,
