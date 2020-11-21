@@ -112,9 +112,10 @@ const AbsoluteRoundEndLine = ({
         current: right,
       })
     );
-  }, []);
+  }, [left, right]);
 
   useEffect(() => {
+    // console.log("haha");
     if (leftStatus && x) {
       let mouseLeftPosition = x - leftOffset - 3;
 
@@ -146,7 +147,7 @@ const AbsoluteRoundEndLine = ({
         })
       );
     }
-  });
+  }, [x, left, right]);
 
   const filteredValue = ({
     originalLeftMargin,
@@ -171,7 +172,7 @@ const AbsoluteRoundEndLine = ({
         ? rightMargin - interval
         : rangeFilterdValue;
 
-    console.log(leftMargin, rightMargin, current);
+    // console.log(leftMargin, rightMargin, current);
 
     return (
       Math.round((rangeFilterdValue - originalLeftMargin) / interval) *

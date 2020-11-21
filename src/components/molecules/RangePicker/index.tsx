@@ -27,28 +27,43 @@ interface RangePickerProps {
 }
 
 const RangePicker = ({ labels, width, number }: RangePickerProps) => {
+  const [timeRanges, setTimeRanges] = useState([{ start: 0, end: width }]);
+  const interval = width / number;
+
   const [left, setLeft] = useState(50);
   const [right, setRight] = useState(100);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  // const [leftOffset, setLeftOffset] = useState(0);
   const leftOffset = useLeftOffset(containerRef);
-
-  console.log({ leftOffset });
+  console.log(timeRanges);
 
   return (
     <Container ref={containerRef}>
       <LineBackground width={width} />
-      <AbsoluteRoundEndLine
-        width={width}
-        leftMargin={0}
-        rightMargin={width}
-        left={left}
-        right={right}
-        onLeftChange={(value) => setLeft(value)}
-        onRightChange={(value) => setRight(value)}
-        labels={labels}
-        number={number}
-      />
+      {timeRanges.map((timeRange, index) => (
+        <AbsoluteRoundEndLine
+          width={width}
+          leftMargin={0}
+          rightMargin={width}
+          left={timeRange.start}
+          right={timeRange.end}
+          onLeftChange={(value) =>
+            setTimeRanges([
+              ...timeRanges.slice(0, index),
+              { ...timeRange, start: value },
+              ...timeRanges.slice(index + 1),
+            ])
+          }
+          onRightChange={(value) =>
+            setTimeRanges([
+              ...timeRanges.slice(0, index),
+              { ...timeRange, end: value },
+              ...timeRanges.slice(index + 1),
+            ])
+          }
+          labels={labels}
+          number={number}
+        />
+      ))}
       <div style={{ width }}></div>
     </Container>
   );
