@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import useMousePosition from '../../../hooks/useMousePosition';
-import useMouseUp from '../../../hooks/useMouseUp';
-import Circle from '../../atoms/Circle';
-import { useEffect } from 'react';
+import React, { useRef, useState } from "react";
+import styled from "styled-components";
+import useMousePosition from "../../../hooks/useMousePosition";
+import useMouseUp from "../../../hooks/useMouseUp";
+import Circle from "../../atoms/Circle";
+import { useEffect } from "react";
 
 export interface RoundEndLineProps {
   labels?: string[];
@@ -54,92 +54,133 @@ const CircleContainer = styled.div<CircleProps>`
   z-index: 2;
 `;
 
-const SecondCircle = styled.div<ContentProps>`
-  position: relative;
-  height: 6px;
-  width: 6px;
-  top: -2px;
-  left: ${({ left, right }) => right - left - 6}px;
-  border-radius: 50%;
-  box-sizing: border-box;
-  background-color: ${({ color }) => color};
-  cursor: e-resize;
-`;
-
 const AbsoluteRoundEndLine = ({
-  width,
-  color = '#609FFF',
+  color = "#609FFF",
   leftMargin,
   rightMargin,
+  number,
   left,
   right,
   onLeftChange,
   onRightChange,
 }: RoundEndLineProps) => {
-  // const [start, setStart] = useState(left);
   const [leftStatus, setLeftStatus] = useState(false);
-  // const [end, setEnd] = useState(right);
-  const [endStatus, setEndStatus] = useState(false);
+  const [rightStatus, setRightStatus] = useState(false);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [leftOffset, setLeftOffset] = useState(0);
+
   const { x, y } = useMousePosition();
+
   useMouseUp(() => {
     setLeftStatus(false);
+    setRightStatus(false);
   });
 
   useEffect(() => {
-    if (leftStatus) {
-      onLeftChange(x || 0);
+    if (leftStatus && x) {
+      let mouseLeftPosition = x - leftOffset - 3;
+
+      const interval = (rightMargin - leftMargin) / number;
+
+      onLeftChange(
+        filteredValue({
+          originalLeftMargin: leftMargin,
+          originalRightMargin: rightMargin,
+          number,
+          leftMargin: leftMargin - interval,
+          rightMargin: right,
+          current: mouseLeftPosition,
+        })
+      );
+    }
+
+    if (rightStatus && x) {
+      let mouseLeftPosition = x - leftOffset - 3;
+
+      const interval = (rightMargin - leftMargin) / number;
+
+      onRightChange(
+        filteredValue({
+          originalLeftMargin: leftMargin,
+          originalRightMargin: rightMargin,
+          number,
+          leftMargin: left,
+          rightMargin: rightMargin + interval,
+          current: mouseLeftPosition,
+        })
+      );
     }
   });
 
-  console.log(leftStatus);
+  useEffect(() => {
+    if (containerRef && containerRef.current) {
+      setLeftOffset(containerRef.current.getBoundingClientRect().left);
+    } else {
+      setLeftOffset(0);
+    }
+  });
+
+  const filteredValue = ({
+    originalLeftMargin,
+    originalRightMargin,
+    number,
+    leftMargin,
+    rightMargin,
+    current,
+  }: {
+    originalLeftMargin: number;
+    originalRightMargin: number;
+    number: number;
+    leftMargin: number;
+    rightMargin: number;
+    current: number;
+  }) => {
+    const interval = (originalRightMargin - originalLeftMargin) / number;
+    let rangeFilterdValue =
+      current < leftMargin + interval ? leftMargin + interval : current;
+    rangeFilterdValue =
+      rangeFilterdValue > rightMargin - interval
+        ? rightMargin - interval
+        : rangeFilterdValue;
+
+    console.log(leftMargin, rightMargin, current);
+
+    return (
+      Math.round((rangeFilterdValue - originalLeftMargin) / interval) *
+        interval +
+      originalLeftMargin
+    );
+  };
 
   return (
     <>
-      <Container>
+      <Container ref={containerRef}>
         <CircleContainer
-          left={left}
+          left={left - 3}
           moving={leftStatus}
           onMouseDown={() => {
             setLeftStatus(true);
           }}
-          onDrag={() => {
-            setLeftStatus(true);
+          onDragStart={(event) => event.preventDefault()}
+        >
+          <Circle size={6} color="#609FFF" hover alwaysHover={leftStatus} />
+        </CircleContainer>
+        <CircleContainer
+          left={right - 3}
+          moving={rightStatus}
+          onMouseDown={() => {
+            setRightStatus(true);
           }}
-          onDragEnd={() => {
-            setLeftStatus(false);
-          }}
+          onDragStart={(event) => event.preventDefault()}
         >
           <Circle size={6} color="#609FFF" hover />
         </CircleContainer>
-        <CircleContainer left={right - 6}>
-          <Circle size={6} color="#609FFF" hover />
-        </CircleContainer>
         <Line
-          left={left + 5}
-          width={right - left - 10}
+          left={left + 2}
+          width={right - left - 4}
           color={color}
           onMouseDown={() => setLeftStatus(true)}
         />
-
-        {/* <FirstCircle
-        left={start}
-        right={end}
-        color={color}
-
-        onMouseUp={() => {
-          setStartStatus(false);
-        }}
-        onMouseMove={() => {
-          console.log("onMouseMove");
-        }}
-        onDrag={() => {
-          setStartStatus(true);
-        }}
-        onDragEnd={() => {
-          setStartStatus(false);
-        }}
-      /> */}
-        {/* <SecondCircle left={start} right={end} color={color} /> */}
       </Container>
     </>
   );

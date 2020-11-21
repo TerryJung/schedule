@@ -1,11 +1,12 @@
-import { relative } from 'path';
-import React from 'react';
-import styled from 'styled-components';
+import { relative } from "path";
+import React from "react";
+import styled from "styled-components";
 
 export interface CircleProps {
   size?: number;
   color?: string;
   hover?: boolean;
+  alwaysHover?: boolean;
 }
 
 const Container = styled.div`
@@ -23,6 +24,7 @@ const HoverCircle = styled.div<CircleProps>`
   :hover {
     background-color: rgba(96, 159, 255, 0.15);
   }
+  background-color: ${({ alwaysHover }) => "rgba(96, 159, 255, 0.15)"};
 `;
 const Content = styled.div<CircleProps>`
   position: relative;
@@ -33,7 +35,12 @@ const Content = styled.div<CircleProps>`
   box-sizing: border-box;
 `;
 
-const Circle = ({ size = 16, color, hover = false }: CircleProps) => {
+const Circle = ({
+  size = 16,
+  color,
+  hover = false,
+  alwaysHover = false,
+}: CircleProps) => {
   return (
     <Container>
       <Content color={color} size={size} />
