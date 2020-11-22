@@ -9,6 +9,7 @@ import MoleculesStyledTextWithIcon from "./MoleculesStyledTextWithIcon";
 import MoleculesColorPicker from "./MoleculesColorPicker";
 import MoleculesRangePicker from "./MoleculesRangePicker";
 import MoleculesPaletteStyledModal from "./MoleculesPaletteStyledModal";
+import MoleculesStyledIconWithText from "./MoleculesStyledIconWithText";
 
 const Molecules = () => {
   return (
@@ -16,6 +17,7 @@ const Molecules = () => {
       <Label color="blue" size={30}>
         Molecules
       </Label>
+      <MoleculesStyledIconWithText />
       <MoleculesPaletteStyledModal />
       <MoleculesRangePicker />
       <MoleculesTextWithIcon />

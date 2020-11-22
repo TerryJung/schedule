@@ -12,6 +12,7 @@ const MoleculesRangePicker = () => {
 
   const [timeRanges1, setTimeRanges1] = useState(base);
   const [timeRanges2, setTimeRanges2] = useState(base);
+
   const labels = [
     "09:00",
     "09:30",
