@@ -17,7 +17,7 @@ export interface RoundEndLineProps {
   right: number;
   onLeftChange: (value: number) => void;
   onRightChange: (value: number) => void;
-  color?: string;
+  color: string;
   preview?: boolean;
 }
 
@@ -68,7 +68,7 @@ const LabelContainer = styled.div<LabelContainerProps>`
 `;
 
 const AbsoluteRoundEndLine = ({
-  color = "#609FFF",
+  color,
   leftMargin,
   rightMargin,
   number,
@@ -197,7 +197,7 @@ const AbsoluteRoundEndLine = ({
         >
           <Circle
             size={6}
-            color={preview ? "rgba(96, 159, 255, 0.15)" : "#609FFF"}
+            color={preview ? "rgba(96, 159, 255, 0.15)" : color}
             hover={!preview}
             alwaysHover={leftStatus && !preview}
           />
@@ -213,7 +213,7 @@ const AbsoluteRoundEndLine = ({
         >
           <Circle
             size={6}
-            color={preview ? "rgba(96, 159, 255, 0.15)" : "#609FFF"}
+            color={preview ? "rgba(96, 159, 255, 0.15)" : color}
             hover={!preview}
             alwaysHover={leftStatus && !preview}
           />
@@ -221,13 +221,13 @@ const AbsoluteRoundEndLine = ({
         <Line
           left={left + 2}
           width={right - left - 4}
-          color={preview ? "rgba(96, 159, 255, 0.15)" : "#609FFF"}
+          color={preview ? "rgba(96, 159, 255, 0.15)" : color}
           onMouseDown={() => setLeftStatus(true)}
         />
         {!preview && labels && labels[leftIndex] && (
           <>
             <LabelContainer left={left - 3}>
-              <Label size={11} noSelect color="#609FFF">
+              <Label size={11} noSelect color={color}>
                 {labels[leftIndex]}
               </Label>
             </LabelContainer>
@@ -241,7 +241,7 @@ const AbsoluteRoundEndLine = ({
               rightAlign
               secondLine={right - left < 60}
             >
-              <Label size={11} noSelect color="#609FFF">
+              <Label size={11} noSelect color={color}>
                 {labels[rightIndex]}
               </Label>
             </LabelContainer>

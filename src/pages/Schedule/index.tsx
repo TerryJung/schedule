@@ -1,31 +1,13 @@
-import React, { useState } from 'react';
-import Icons from '../../components/atoms/Icons';
-import Input from '../../components/atoms/Input';
-import InputWithIcon from '../../components/molecules/InputWithIcon/index';
+import React from "react";
+import styled from "styled-components";
+
+const Container = styled.div`
+  background-color: #eaeaea;
+  display: flex;
+`;
 
 const Schedule = () => {
-  const [scheduleName, setScheduleName] = useState('');
-
-  console.log(scheduleName);
-
-  return (
-    <div style={{ verticalAlign: 'top' }}>
-      <Input
-        value={scheduleName}
-        onChange={(e) => setScheduleName(e.target.value)}
-        size={10}
-        style={{ width: '500px' }}
-      />
-      <Icons name="Clear" color="#999999" size={100} />
-      <InputWithIcon
-        width={120}
-        value={scheduleName}
-        onChange={(e) => setScheduleName(e.target.value)}
-        size={10}
-        iconName="Calendar"
-      />
-    </div>
-  );
+  return <Container></Container>;
 };
 
 export default Schedule;

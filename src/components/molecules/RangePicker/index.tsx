@@ -37,9 +37,16 @@ interface RangePickerProps {
   width: number;
   number: number;
   reset?: boolean;
+  color: string;
 }
 
-const RangePicker = ({ labels, width, number, reset }: RangePickerProps) => {
+const RangePicker = ({
+  labels,
+  width,
+  number,
+  reset,
+  color,
+}: RangePickerProps) => {
   const base = [{ start: 0, end: width }];
 
   const [timeRanges, setTimeRanges] = useState(base);
@@ -142,6 +149,7 @@ const RangePicker = ({ labels, width, number, reset }: RangePickerProps) => {
           }
           labels={labels}
           number={number}
+          color={color}
         />
       ))}
       {insertable && (
@@ -156,6 +164,7 @@ const RangePicker = ({ labels, width, number, reset }: RangePickerProps) => {
           number={number}
           labels={labels}
           preview
+          color={color}
         />
       )}
       <div style={{ width }}></div>
