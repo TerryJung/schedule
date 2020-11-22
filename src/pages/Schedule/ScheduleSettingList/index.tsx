@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React from "react";
 import IconWithLabel from "../../../components/molecules/IconWithLabel";
-import todayFormatted from "../../../utils/date";
+import styled from "styled-components";
 import ScheduleList from "./ScheduleList";
+import { ScheduleListProps } from "./ScheduleList";
 
 const Container = styled.div`
   display: flex;
@@ -19,7 +19,7 @@ const ColorPickerContainer = styled.div`
   padding: 25px 10px;
 `;
 
-interface ScheduleSettingListProps {}
+interface ScheduleSettingListProps extends ScheduleListProps {}
 
 const Title = styled.div`
   border-bottom: 1px solid #dcdcdc;
@@ -27,13 +27,13 @@ const Title = styled.div`
   width: 100%;
 `;
 
-const ScheduleSettingList = ({}: ScheduleSettingListProps) => {
-  console.log(todayFormatted());
-  const baseSchedule = { start: todayFormatted() + "~", end: "종료일 없음" };
-
-  const [scheduleList, setScheduleList] = useState([baseSchedule]);
-  const [selectedScheduleIndex, setSelectedScheduleIndex] = useState(0);
-
+const ScheduleSettingList = ({
+  scheduleList,
+  setScheduleList,
+  setSelectedScheduleIndex,
+  selectedScheduleIndex,
+  baseSchedule,
+}: ScheduleSettingListProps) => {
   return (
     <Container>
       <Title>

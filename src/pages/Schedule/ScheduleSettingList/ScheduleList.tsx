@@ -5,7 +5,7 @@ import StyledIconWithText from "../../../components/molecules/StyledIconWithText
 import InputWithIcon from "../../../components/molecules/InputWithIcon";
 import moment from "moment";
 
-interface ScheduleListProps {
+export interface ScheduleListProps {
   scheduleList: {
     start: string;
     end: string;
@@ -111,7 +111,6 @@ const ScheduleList = ({
       const startDate = moment(start);
       const end = scheduleList[i].end;
       const endDate = moment(end);
-      console.log(Date.parse(start));
       if (
         !startDate.isValid() ||
         (!endDate.isValid() && end !== "종료일 없음")

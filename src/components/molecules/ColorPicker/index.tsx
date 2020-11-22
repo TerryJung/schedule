@@ -1,12 +1,12 @@
-import React, { useRef, useState } from 'react';
-import styled from 'styled-components';
-import Label from '../../atoms/Label';
-import useClickOutsideComponet from '../../../hooks/useClickOutsideComponet';
-import useKeyDown from '../../../hooks/useKeyDown';
-import ColorPickerHead from './ColorPickerHead';
+import React, { useRef, useState } from "react";
+import styled from "styled-components";
+import Label from "../../atoms/Label";
+import useClickOutsideComponet from "../../../hooks/useClickOutsideComponet";
+import useKeyDown from "../../../hooks/useKeyDown";
+import ColorPickerHead from "./ColorPickerHead";
 import ColorPickerItemList, {
   ColorPickerItemListProps,
-} from '../ColorPickerItemList';
+} from "../ColorPickerItemList";
 
 interface ColorPickerProps extends ColorPickerItemListProps {
   disabled?: boolean;
@@ -14,14 +14,17 @@ interface ColorPickerProps extends ColorPickerItemListProps {
   placeholder?: string;
 }
 
-const Controler = styled.div``;
+const Controler = styled.div`
+  z-index: 6;
+`;
 
 interface ContainerProps {
   disabled?: boolean;
 }
 
 const Container = styled.div<ContainerProps>`
-  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
+  z-index: 6;
 `;
 
 interface ItemListContainerProps {
@@ -31,6 +34,7 @@ interface ItemListContainerProps {
 const ItemListContainer = styled.div<ItemListContainerProps>`
   position: relative;
   top: -30px;
+  z-index: 6;
 `;
 
 const ColorPicker = ({
