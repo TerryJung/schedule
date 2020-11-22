@@ -29,11 +29,11 @@ const Label = ({
   noSelect = false,
 }: LabelProps) => {
   return (
-    <Container>
-      <StyledSpan color={color} size={size} noSelect={noSelect}>
-        {children}
-      </StyledSpan>
-    </Container>
+    // <Container>
+    <StyledSpan color={color} size={size} noSelect={noSelect}>
+      {children}
+    </StyledSpan>
+    // </Container>
   );
 };
 

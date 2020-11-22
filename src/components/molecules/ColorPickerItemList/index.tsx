@@ -16,9 +16,9 @@ export interface ColorPickerItemListProps {
 
 const LabelContainer = styled.div`
   box-sizing: border-box;
-  padding-top: 5px;
-  padding-left: 10px;
-  height: 28px;
+  padding: 4px 10px;
+  height: 29px;
+  border-bottom: 1px solid #dcdcdc;
 `;
 
 interface ContainerProps {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Label from "../../components/atoms/Label/index";
 import styled from "styled-components";
 import RangePicker from "../../components/molecules/RangePicker/index";
@@ -8,6 +8,10 @@ const FlexRowContainer = styled.div`
 `;
 
 const MoleculesRangePicker = () => {
+  const base = [{ start: 0, end: 150 }];
+
+  const [timeRanges1, setTimeRanges1] = useState(base);
+  const [timeRanges2, setTimeRanges2] = useState(base);
   const labels = [
     "09:00",
     "09:30",
@@ -35,9 +39,17 @@ const MoleculesRangePicker = () => {
           labels={labels}
           reset
           color="#609FFF"
+          timeRanges={timeRanges1}
+          setTimeRanges={setTimeRanges1}
         />
         <div style={{ width: 20 }}></div>
-        <RangePicker width={150} number={10} color="red" />
+        <RangePicker
+          width={150}
+          number={10}
+          color="red"
+          timeRanges={timeRanges2}
+          setTimeRanges={setTimeRanges2}
+        />
       </FlexRowContainer>
       <div style={{ height: 10 }}></div>
     </>

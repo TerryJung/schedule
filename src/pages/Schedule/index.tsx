@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import PaletteStyledModal from "../../components/molecules/PaletteStyledModal";
+import GlobalSetting from "./GlobalSetting";
+import ScheduleSettingList from "./ScheduleSettingList";
 
 const Container = styled.div`
   background-color: #eaeaea;
@@ -8,13 +10,24 @@ const Container = styled.div`
 `;
 
 const Schedule = () => {
+  const [scheduleName, setScheduleNameChange] = useState("");
+  const [colorSelected, setColorSelected] = useState<null | number>(null);
+
   return (
     <PaletteStyledModal
       width={760}
       height={700}
       titleIcon="AddCalendar"
       titleLabel="스케줄 설정"
-    ></PaletteStyledModal>
+    >
+      <GlobalSetting
+        scheduleName={scheduleName}
+        onScheduleNameChange={(e) => setScheduleNameChange(e.target.value)}
+        colorSelected={colorSelected}
+        setColorSelected={setColorSelected}
+      />
+      <ScheduleSettingList />
+    </PaletteStyledModal>
   );
 };
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Circle from "../../atoms/Circle/index";
 import Icons from "../../atoms/Icons";
 import styled from "styled-components";
@@ -7,8 +7,11 @@ interface ColorPickerHeadProps {
   size?: number;
   color?: string;
 }
+interface ContainerProps {
+  size: number;
+}
 
-const Container = styled.div<ColorPickerHeadProps>`
+const Container = styled.div<ContainerProps>`
   height: ${({ size }) => size}px;
   width: ${({ size }) => size}px;
   border-radius: 50%;
@@ -20,13 +23,27 @@ const Container = styled.div<ColorPickerHeadProps>`
 `;
 
 const ColorPickerHead = ({ color, size = 24 }: ColorPickerHeadProps) => {
+  const [hoverStatus, setHoverStatus] = useState(false);
+
+  const handleHover = () => {
+    setHoverStatus(true);
+  };
+
   return (
     <>
       {color ? (
         <Circle color={color} size={size ? size : undefined} />
       ) : (
-        <Container size={size}>
-          <Icons name="ColorPicker" color="#609FFF" size={size} />
+        <Container
+          size={size}
+          onMouseOver={() => setHoverStatus(true)}
+          onMouseOut={() => setHoverStatus(false)}
+        >
+          <Icons
+            name="ColorPicker"
+            color={hoverStatus ? "#609FFF" : "#DCDCDC"}
+            size={size}
+          />
         </Container>
       )}
     </>

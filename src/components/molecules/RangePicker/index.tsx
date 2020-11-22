@@ -38,6 +38,19 @@ interface RangePickerProps {
   number: number;
   reset?: boolean;
   color: string;
+
+  timeRanges: {
+    start: number;
+    end: number;
+  }[];
+  setTimeRanges: React.Dispatch<
+    React.SetStateAction<
+      {
+        start: number;
+        end: number;
+      }[]
+    >
+  >;
 }
 
 const RangePicker = ({
@@ -46,10 +59,13 @@ const RangePicker = ({
   number,
   reset,
   color,
+
+  timeRanges,
+  setTimeRanges,
 }: RangePickerProps) => {
   const base = [{ start: 0, end: width }];
 
-  const [timeRanges, setTimeRanges] = useState(base);
+  // const [timeRanges, setTimeRanges] = useState(base);
   const [insertable, setInsertable] = useState(false);
   const interval = width / number;
 

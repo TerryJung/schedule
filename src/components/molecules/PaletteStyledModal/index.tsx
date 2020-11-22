@@ -6,7 +6,7 @@ import Icons from "../../atoms/Icons";
 import { iconList } from "../../atoms/Icons/index";
 import Label from "../../atoms/Label";
 
-interface PaletteStyledModal extends StyledBoxProps {
+interface PaletteStyledModalProps extends StyledBoxProps {
   titleIcon?: keyof typeof iconList;
   titleLabel?: string;
   titleIconColor?: string;
@@ -46,7 +46,8 @@ const PaletteStyledModal = ({
   titleIcon,
   titleLabel = "타이틀을 넣어주세요",
   titleIconColor,
-}: PaletteStyledModal) => {
+  children,
+}: PaletteStyledModalProps) => {
   const color = "#dcdcdc";
 
   return (
@@ -72,6 +73,7 @@ const PaletteStyledModal = ({
             <Icons name="Close" color={titleIconColor || "#999999"} size={24} />
           </CloseIconContainer>
         </TitleBox>
+        {children}
       </StyledBox>
     </>
   );

@@ -1,8 +1,8 @@
-import React from 'react';
-import Input, { InputProps } from '../../atoms/Input/index';
-import Label from '../../atoms/Label';
+import React from "react";
+import Input, { InputProps } from "../../atoms/Input/index";
+import Label from "../../atoms/Label";
 
-interface InputWithLabelProps extends InputProps {
+export interface InputWithLabelProps extends InputProps {
   labelText: string;
 }
 
