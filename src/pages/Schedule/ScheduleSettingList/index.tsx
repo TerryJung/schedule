@@ -29,7 +29,7 @@ const Title = styled.div`
 
 const ScheduleSettingList = ({}: ScheduleSettingListProps) => {
   console.log(todayFormatted());
-  const baseSchedule = { start: todayFormatted(), end: "종료일 없음" };
+  const baseSchedule = { start: todayFormatted() + "~", end: "종료일 없음" };
 
   const [scheduleList, setScheduleList] = useState([
     baseSchedule,

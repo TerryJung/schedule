@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Icons from "../../../components/atoms/Icons";
 import StyledTextWithIcon from "../../../components/molecules/StyledTextWithIcon/index";
 import StyledIconWithText from "../../../components/molecules/StyledIconWithText/index";
+import InputWithIcon from "../../../components/molecules/InputWithIcon";
+import { strict } from "assert";
 
 interface ScheduleListProps {
   scheduleList: {
@@ -71,6 +73,8 @@ const ScheduleList = ({
 }: ScheduleListProps) => {
   const maxSchedule = 8;
 
+  const validatedDates = [true, true, true, true, true, true, true, true];
+
   const handleAddSchedule = () => {
     if (scheduleList.length !== maxSchedule) {
       setScheduleList([...scheduleList, baseSchedule]);
@@ -81,20 +85,57 @@ const ScheduleList = ({
     setSelectedScheduleIndex(index);
   };
 
+  const handleInputValue = ({
+    start,
+    end,
+  }: {
+    start: string;
+    end: string;
+  }): string => {
+    return start + end;
+  };
+
+  const handleInput = (index: number, value: string) => {
+    const start = value.slice(0, 11);
+    const end = value.slice(11);
+
+    setScheduleList([
+      ...scheduleList.slice(0, index),
+      { start, end },
+      ...scheduleList.slice(index + 1),
+    ]);
+  };
+
+  const validateInput = () => {
+    for (let i = 0; i < scheduleList.length; i++) {
+      const start = scheduleList[i].start.slice(0, 10);
+      const end = scheduleList[i].end;
+      console.log(Date.parse(start));
+      if (
+        isNaN(Date.parse(start)) ||
+        (isNaN(Date.parse(end)) && end !== "종료일 없음")
+      ) {
+        validatedDates[i] = false;
+      }
+    }
+  };
+  validateInput();
+
   return (
     <Container>
-      {scheduleList.map((schedule, index) => (
+      {scheduleList.map(({ start, end }, index) => (
         <StyledTextWithIconContainer
           rightBorder={selectedScheduleIndex !== index}
+          key={index.toString()}
         >
-          <StyledTextWithIcon
+          <InputWithIcon
+            style={!validatedDates[index] ? { color: "red" } : undefined}
             iconName="Calendar"
             iconColor="#999999"
             width={200}
-            key={schedule.start + schedule.end}
-          >
-            {`${schedule.start}~${schedule.end}`}
-          </StyledTextWithIcon>
+            value={handleInputValue({ start, end })}
+            onChange={(e) => handleInput(index, e.target.value)}
+          />
           <IconContainer onClick={() => handleListSelect(index)}>
             <Icons name="LineArrowRight" size={24} color="#999999" />
           </IconContainer>
