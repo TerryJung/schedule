@@ -29,7 +29,7 @@ const MoleculesRangePicker = () => {
       </Label>
       <div style={{ height: 10 }}></div>
       <FlexRowContainer>
-        <RangePicker width={150} number={10} labels={labels} />
+        <RangePicker width={150} number={10} labels={labels} reset />
         <div style={{ width: 20 }}></div>
         <RangePicker width={150} number={10} />
       </FlexRowContainer>

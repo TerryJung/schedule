@@ -23,7 +23,7 @@ const HoverCircle = styled.div<CircleProps>`
   :hover {
     background-color: rgba(96, 159, 255, 0.15);
   }
-  background-color: ${({ alwaysHover }) => "rgba(96, 159, 255, 0.15)"};
+  /* background-color: ${({ alwaysHover }) => "rgba(96, 159, 255, 0.15)"}; */
 `;
 const Content = styled.div<CircleProps>`
   position: relative;
@@ -43,7 +43,9 @@ const Circle = ({
   return (
     <Container>
       <Content color={color} size={size} />
-      {hover && <HoverCircle size={size} hover={hover} />}
+      {hover && (
+        <HoverCircle size={size} hover={hover} alwaysHover={alwaysHover} />
+      )}
     </Container>
   );
 };

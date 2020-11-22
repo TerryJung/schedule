@@ -18,6 +18,7 @@ export interface RoundEndLineProps {
   onLeftChange: (value: number) => void;
   onRightChange: (value: number) => void;
   color?: string;
+  preview?: boolean;
 }
 
 const Container = styled.div``;
@@ -42,12 +43,14 @@ const Line = styled.div<LineProps>`
 interface CircleProps {
   left: number;
   moving?: boolean;
+  preview?: boolean;
 }
 
 const CircleContainer = styled.div<CircleProps>`
   position: absolute;
+  top: 0px;
   left: ${({ left }) => left}px;
-  cursor: ew-resize;
+  cursor: ${({ preview }) => (preview ? undefined : "ew-resize")};
   z-index: 2;
 `;
 
@@ -74,6 +77,8 @@ const AbsoluteRoundEndLine = ({
   onLeftChange,
   onRightChange,
   labels,
+  preview = false,
+  width,
 }: RoundEndLineProps) => {
   const [leftStatus, setLeftStatus] = useState(false);
   const [rightStatus, setRightStatus] = useState(false);
@@ -81,7 +86,7 @@ const AbsoluteRoundEndLine = ({
   const leftOffset = useLeftOffset(containerRef);
 
   const { x } = useMousePosition();
-  const interval = (rightMargin - leftMargin) / number;
+  const interval = width / number;
   const leftIndex = (left - leftMargin) / interval;
   const rightIndex = (right - leftMargin) / interval;
 
@@ -134,8 +139,6 @@ const AbsoluteRoundEndLine = ({
     if (rightStatus && x) {
       let mouseLeftPosition = x - leftOffset - 3;
 
-      const interval = (rightMargin - leftMargin) / number;
-
       onRightChange(
         filteredValue({
           originalLeftMargin: leftMargin,
@@ -152,7 +155,6 @@ const AbsoluteRoundEndLine = ({
   const filteredValue = ({
     originalLeftMargin,
     originalRightMargin,
-    number,
     leftMargin,
     rightMargin,
     current,
@@ -164,7 +166,7 @@ const AbsoluteRoundEndLine = ({
     rightMargin: number;
     current: number;
   }) => {
-    const interval = (originalRightMargin - originalLeftMargin) / number;
+    // const interval = (originalRightMargin - originalLeftMargin) / number;
     let rangeFilterdValue =
       current < leftMargin + interval ? leftMargin + interval : current;
     rangeFilterdValue =
@@ -186,31 +188,43 @@ const AbsoluteRoundEndLine = ({
       <Container ref={containerRef}>
         <CircleContainer
           left={left - 3}
-          moving={leftStatus}
+          moving={leftStatus && !preview}
+          preview={preview}
           onMouseDown={() => {
             setLeftStatus(true);
           }}
           onDragStart={(event) => event.preventDefault()}
         >
-          <Circle size={6} color="#609FFF" hover alwaysHover={leftStatus} />
+          <Circle
+            size={6}
+            color={preview ? "rgba(96, 159, 255, 0.15)" : "#609FFF"}
+            hover={!preview}
+            alwaysHover={leftStatus && !preview}
+          />
         </CircleContainer>
         <CircleContainer
           left={right - 3}
-          moving={rightStatus}
+          moving={rightStatus && !preview}
+          preview={preview}
           onMouseDown={() => {
             setRightStatus(true);
           }}
           onDragStart={(event) => event.preventDefault()}
         >
-          <Circle size={6} color="#609FFF" hover />
+          <Circle
+            size={6}
+            color={preview ? "rgba(96, 159, 255, 0.15)" : "#609FFF"}
+            hover={!preview}
+            alwaysHover={leftStatus && !preview}
+          />
         </CircleContainer>
         <Line
           left={left + 2}
           width={right - left - 4}
-          color={color}
+          color={preview ? "rgba(96, 159, 255, 0.15)" : "#609FFF"}
           onMouseDown={() => setLeftStatus(true)}
         />
-        {labels && labels[leftIndex] && (
+        {!preview && labels && labels[leftIndex] && (
           <>
             <LabelContainer left={left - 3}>
               <Label size={11} noSelect color="#609FFF">
@@ -220,7 +234,7 @@ const AbsoluteRoundEndLine = ({
             <div style={{ height: 16 }}></div>
           </>
         )}
-        {labels && labels[rightIndex] && (
+        {!preview && labels && labels[rightIndex] && (
           <>
             <LabelContainer
               left={right - 27}
