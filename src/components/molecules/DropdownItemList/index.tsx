@@ -13,19 +13,22 @@ export interface DropdownItemListProps {
 
 interface ContainerProps {
   width: number;
+  length: number;
 }
 
 const Container = styled.div<ContainerProps>`
-  height: 180px;
+  height: ${({ length }) => length * 30}px;
   overflow: auto;
   width: ${({ width }) => width}px;
-  background: #ffffff;
 
   border: 1px solid #dcdcdc;
   box-sizing: border-box;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1), 0px 2px 3px rgba(0, 0, 0, 0.05);
   border-radius: 5px;
   cursor: pointer;
+  position: relative;
+  z-index: 10000;
+  background-color: white;
 `;
 
 const DropdownItemList = ({
@@ -64,8 +67,9 @@ const DropdownItemList = ({
     }
   }
 
+  console.log(Math.min(6, list.length));
   return (
-    <Container width={width}>
+    <Container width={width} length={Math.min(6, list.length)}>
       {list.map((text, index) => (
         <DropdownItem
           key={`${text}${index}`}

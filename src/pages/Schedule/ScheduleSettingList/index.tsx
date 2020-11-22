@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import IconWithLabel from '../../../components/molecules/IconWithLabel';
 import styled from 'styled-components';
 import ScheduleList from './ScheduleList';
@@ -31,6 +31,10 @@ const ScheduleSettingList = ({
   selectedScheduleIndex,
   baseSchedule,
 }: ScheduleSettingListProps) => {
+  const chooseTime = ['1주 전', '2주 전', '3주 전', '4주 전'];
+
+  const [timeSelected, setTimeSelected] = useState<number | null>(0);
+
   return (
     <Container>
       <Title>
@@ -44,7 +48,11 @@ const ScheduleSettingList = ({
           selectedScheduleIndex={selectedScheduleIndex}
           baseSchedule={baseSchedule}
         />
-        <TimeSetting />
+        <TimeSetting
+          chooseTime={chooseTime}
+          timeSelected={timeSelected}
+          setTimeSelected={setTimeSelected}
+        />
       </ContentsContainer>
     </Container>
   );

@@ -32,11 +32,13 @@ const Container = styled.div`
   box-sizing: border-box;
 `;
 
-interface StyledTextWithIconContainer {
+interface StyledTextWithIconContainerProps {
   rightBorder: boolean;
 }
 
-const StyledTextWithIconContainer = styled.div<StyledTextWithIconContainer>`
+const StyledTextWithIconContainer = styled.div<
+  StyledTextWithIconContainerProps
+>`
   padding: 10px 20px;
   display: flex;
   align-content: center;

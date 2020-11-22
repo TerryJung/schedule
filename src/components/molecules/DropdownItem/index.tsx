@@ -1,6 +1,6 @@
-import React from "react";
-import TextWithIcon from "../TextWithIcon";
-import styled from "styled-components";
+import React from 'react';
+import TextWithIcon from '../TextWithIcon';
+import styled from 'styled-components';
 
 interface DropdownItemProps {
   text: string;
@@ -16,14 +16,19 @@ interface ContainerProps {
 }
 
 const Container = styled.div<ContainerProps>`
+  position: relative;
   background: ${({ keyboardSelected }) =>
-    keyboardSelected ? "rgba(96, 159, 255, 0.15)" : "white"};
-  color: ${({ selected }) => (selected ? "#609FFF" : "black")};
+    keyboardSelected ? 'rgba(96, 159, 255, 0.15)' : 'white'};
+  color: ${({ selected }) => (selected ? '#609FFF' : 'black')};
   :hover {
     background: rgba(0, 0, 0, 0.03);
   }
-  box-sizing: "border-box";
+  box-sizing: 'border-box';
   width: 100%;
+
+  /* z-index: 10;
+  display: block; */
+  z-index: 10000;
 `;
 
 const DropdownItem = ({
@@ -40,9 +45,10 @@ const DropdownItem = ({
       onClick={onClick}
     >
       <TextWithIcon
-        iconColor={selected ? "#609FFF" : "white"}
-        iconName={selected ? "Check" : null}
+        iconColor={selected ? '#609FFF' : 'white'}
+        iconName={selected ? 'Check' : null}
         width={width}
+        // style={{ zIndex: 10000 }}
       >
         {text}
       </TextWithIcon>
