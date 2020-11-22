@@ -1,9 +1,9 @@
-import React from "react";
-import styled from "styled-components";
-import Icons from "../../../components/atoms/Icons";
-import StyledIconWithText from "../../../components/molecules/StyledIconWithText/index";
-import InputWithIcon from "../../../components/molecules/InputWithIcon";
-import moment from "moment";
+import React from 'react';
+import styled from 'styled-components';
+import Icons from '../../../components/atoms/Icons';
+import StyledIconWithText from '../../../components/molecules/StyledIconWithText/index';
+import InputWithIcon from '../../../components/molecules/InputWithIcon';
+import moment from 'moment';
 
 export interface ScheduleListProps {
   scheduleList: {
@@ -43,7 +43,7 @@ const StyledTextWithIconContainer = styled.div<StyledTextWithIconContainer>`
   box-sizing: border-box;
   border-bottom: 1px solid #dcdcdc;
   border-right: ${({ rightBorder }) =>
-    rightBorder ? "1px solid #dcdcdc" : undefined};
+    rightBorder ? '1px solid #dcdcdc' : undefined};
 `;
 
 const IconContainer = styled.div`
@@ -73,6 +73,8 @@ const ScheduleList = ({
   const maxSchedule = 8;
 
   const validatedDates = [true, true, true, true, true, true, true, true];
+  const infiniteDate = baseSchedule.end;
+  const realInfiniteDate = '9999-12-31';
 
   const handleAddSchedule = () => {
     if (scheduleList.length !== maxSchedule) {
@@ -111,29 +113,39 @@ const ScheduleList = ({
       const startDate = moment(start);
       const end = scheduleList[i].end;
       const endDate = moment(end);
+      const iStartValue = Date.parse(start);
+      const iEndValue = Date.parse(
+        end === infiniteDate ? realInfiniteDate : end
+      );
+
+      if (iStartValue > iEndValue) {
+        validatedDates[i] = false;
+      }
+
       if (
         !startDate.isValid() ||
-        (!endDate.isValid() && end !== "종료일 없음")
+        (!endDate.isValid() && end !== infiniteDate)
       ) {
         validatedDates[i] = false;
       }
-      for (let j = 0; j < i; j++) {
-        const iStartValue = Date.parse(start);
-        const iEndValue = Date.parse(
-          end === "종료일 없음" ? "9999-12-31" : end
-        );
-        const jStartValue = Date.parse(scheduleList[j].start.slice(0, 10));
-        const jEndValue = Date.parse(
-          scheduleList[j].end === "종료일 없음"
-            ? "9999-12-31"
-            : scheduleList[j].end
-        );
-        if (
-          (iStartValue >= jStartValue && iStartValue <= jEndValue) ||
-          (iEndValue >= jStartValue && iEndValue <= jEndValue)
-        ) {
-          validatedDates[i] = false;
-          validatedDates[j] = false;
+
+      if (validatedDates[i]) {
+        for (let j = 0; j < i; j++) {
+          if (validatedDates[j]) {
+            const jStartValue = Date.parse(scheduleList[j].start.slice(0, 10));
+            const jEndValue = Date.parse(
+              scheduleList[j].end === infiniteDate
+                ? realInfiniteDate
+                : scheduleList[j].end
+            );
+            if (
+              (iStartValue >= jStartValue && iStartValue <= jEndValue) ||
+              (iEndValue >= jStartValue && iEndValue <= jEndValue)
+            ) {
+              validatedDates[i] = false;
+              validatedDates[j] = false;
+            }
+          }
         }
       }
     }
@@ -148,7 +160,7 @@ const ScheduleList = ({
           key={index.toString()}
         >
           <InputWithIcon
-            style={!validatedDates[index] ? { color: "red" } : undefined}
+            style={!validatedDates[index] ? { color: 'red' } : undefined}
             iconName="Calendar"
             iconColor="#999999"
             width={200}
@@ -165,12 +177,12 @@ const ScheduleList = ({
           iconName="Calendar"
           iconColor="#999999"
           width={230}
-          style={{ color: "#999999" }}
+          style={{ color: '#999999' }}
           onClick={handleAddSchedule}
         >
           {scheduleList.length === maxSchedule
-            ? "스케줄 추가 안됨"
-            : "다음 스케줄 추가"}
+            ? '스케줄 추가 안됨'
+            : '다음 스케줄 추가'}
         </StyledIconWithText>
       </StyledIconWithTextContainer>
     </Container>
