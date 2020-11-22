@@ -31,12 +31,7 @@ const ScheduleSettingList = ({}: ScheduleSettingListProps) => {
   console.log(todayFormatted());
   const baseSchedule = { start: todayFormatted() + "~", end: "종료일 없음" };
 
-  const [scheduleList, setScheduleList] = useState([
-    baseSchedule,
-    baseSchedule,
-    baseSchedule,
-    baseSchedule,
-  ]);
+  const [scheduleList, setScheduleList] = useState([baseSchedule]);
   const [selectedScheduleIndex, setSelectedScheduleIndex] = useState(0);
 
   return (

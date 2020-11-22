@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import Icons from "../../../components/atoms/Icons";
-import StyledTextWithIcon from "../../../components/molecules/StyledTextWithIcon/index";
 import StyledIconWithText from "../../../components/molecules/StyledIconWithText/index";
 import InputWithIcon from "../../../components/molecules/InputWithIcon";
-import { strict } from "assert";
+import moment from "moment";
 
 interface ScheduleListProps {
   scheduleList: {
@@ -109,13 +108,34 @@ const ScheduleList = ({
   const validateInput = () => {
     for (let i = 0; i < scheduleList.length; i++) {
       const start = scheduleList[i].start.slice(0, 10);
+      const startDate = moment(start);
       const end = scheduleList[i].end;
+      const endDate = moment(end);
       console.log(Date.parse(start));
       if (
-        isNaN(Date.parse(start)) ||
-        (isNaN(Date.parse(end)) && end !== "종료일 없음")
+        !startDate.isValid() ||
+        (!endDate.isValid() && end !== "종료일 없음")
       ) {
         validatedDates[i] = false;
+      }
+      for (let j = 0; j < i; j++) {
+        const iStartValue = Date.parse(start);
+        const iEndValue = Date.parse(
+          end === "종료일 없음" ? "9999-12-31" : end
+        );
+        const jStartValue = Date.parse(scheduleList[j].start.slice(0, 10));
+        const jEndValue = Date.parse(
+          scheduleList[j].end === "종료일 없음"
+            ? "9999-12-31"
+            : scheduleList[j].end
+        );
+        if (
+          (iStartValue >= jStartValue && iStartValue <= jEndValue) ||
+          (iEndValue >= jStartValue && iEndValue <= jEndValue)
+        ) {
+          validatedDates[i] = false;
+          validatedDates[j] = false;
+        }
       }
     }
   };
