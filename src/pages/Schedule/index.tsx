@@ -1,20 +1,14 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import PaletteStyledModal from "../../components/molecules/PaletteStyledModal";
-import GlobalSetting from "./GlobalSetting";
-import ScheduleSettingList from "./ScheduleSettingList";
-import todayFormatted from "../../utils/date";
-
-const Container = styled.div`
-  background-color: #eaeaea;
-  display: flex;
-`;
+import React, { useState } from 'react';
+import PaletteStyledModal from '../../components/molecules/PaletteStyledModal';
+import GlobalSetting from './GlobalSetting';
+import ScheduleSettingList from './ScheduleSettingList';
+import todayFormatted from '../../utils/date';
 
 const Schedule = () => {
-  const [scheduleName, setScheduleNameChange] = useState("");
+  const [scheduleName, setScheduleNameChange] = useState('');
   const [colorSelected, setColorSelected] = useState<null | number>(null);
 
-  const baseSchedule = { start: todayFormatted() + "~", end: "종료일 없음" };
+  const baseSchedule = { start: todayFormatted() + '~', end: '종료일 없음' };
 
   const [scheduleList, setScheduleList] = useState([baseSchedule]);
   const [selectedScheduleIndex, setSelectedScheduleIndex] = useState(0);

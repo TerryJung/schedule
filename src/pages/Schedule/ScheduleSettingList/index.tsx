@@ -1,8 +1,9 @@
-import React from "react";
-import IconWithLabel from "../../../components/molecules/IconWithLabel";
-import styled from "styled-components";
-import ScheduleList from "./ScheduleList";
-import { ScheduleListProps } from "./ScheduleList";
+import React from 'react';
+import IconWithLabel from '../../../components/molecules/IconWithLabel';
+import styled from 'styled-components';
+import ScheduleList from './ScheduleList';
+import { ScheduleListProps } from './ScheduleList';
+import TimeSetting from './TimeSetting';
 
 const Container = styled.div`
   display: flex;
@@ -13,10 +14,6 @@ const Container = styled.div`
 
 const ContentsContainer = styled.div`
   display: flex;
-`;
-
-const ColorPickerContainer = styled.div`
-  padding: 25px 10px;
 `;
 
 interface ScheduleSettingListProps extends ScheduleListProps {}
@@ -47,6 +44,7 @@ const ScheduleSettingList = ({
           selectedScheduleIndex={selectedScheduleIndex}
           baseSchedule={baseSchedule}
         />
+        <TimeSetting />
       </ContentsContainer>
     </Container>
   );
