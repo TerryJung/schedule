@@ -120,8 +120,6 @@ const RangePicker = ({
     }
   };
 
-  // console.log(timeRanges);
-
   const handleValueChange = (
     index: number,
     newValue: { start: number; end: number }
