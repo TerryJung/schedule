@@ -4,6 +4,25 @@ import GlobalSetting from "./GlobalSetting";
 import ScheduleSettingList from "./ScheduleSettingList";
 import todayFormatted from "../../utils/date";
 import { iRange } from "../../components/molecules/RangePicker/index";
+import styled from "styled-components";
+import Text from "../../components/atoms/Text/index";
+import Button from "../../components/atoms/Button";
+
+const ButtonsContainer = styled.div`
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  padding: 0px 20px 20px 20px;
+`;
+
+const CenterLine = styled.div`
+  position: absolute;
+  left: 269.05px;
+  width: 1px;
+  height: 250px;
+  border-left: 1px solid #dcdcdc;
+  top: -200px;
+`;
 
 const Schedule = () => {
   const baseSchedule = { start: todayFormatted() + "~", end: "종료일 없음" };
@@ -216,6 +235,19 @@ const Schedule = () => {
         }
         timeLabels={timeLabels}
       />
+      <ButtonsContainer>
+        <Button onClick={() => alert("취소...")}>
+          <Text>취소</Text>
+        </Button>
+        <Button
+          variant="floodFill"
+          style={{ width: 100 }}
+          onClick={() => alert(result)}
+        >
+          <Text color="white">저장</Text>
+        </Button>
+        <CenterLine />
+      </ButtonsContainer>
     </PaletteStyledModal>
   );
 };
