@@ -22,7 +22,6 @@ const PickAndResultContainer = styled.div`
 const TipContainer = styled.div`
   position: absolute;
   top: 90px;
-  padding: 10px 0px;
   z-index: -20;
 `;
 

@@ -1,11 +1,11 @@
-import React, { useRef, useState } from "react";
-import styled from "styled-components";
-import useMousePosition from "../../../hooks/useMousePosition";
-import useMouseUp from "../../../hooks/useMouseUp";
-import Circle from "../../atoms/Circle";
-import { useEffect } from "react";
-import Label from "../../atoms/Label";
-import useLeftOffset from "../../../hooks/useLeftOffset";
+import React, { useRef, useState } from 'react';
+import styled from 'styled-components';
+import useMousePosition from '../../../hooks/useMousePosition';
+import useMouseUp from '../../../hooks/useMouseUp';
+import Circle from '../../atoms/Circle';
+import { useEffect } from 'react';
+import Label from '../../atoms/Label';
+import useLeftOffset from '../../../hooks/useLeftOffset';
 
 export interface RoundEndLineProps {
   labels?: string[];
@@ -50,7 +50,7 @@ const CircleContainer = styled.div<CircleProps>`
   position: absolute;
   top: 0px;
   left: ${({ left }) => left}px;
-  cursor: ${({ preview }) => (preview ? undefined : "ew-resize")};
+  cursor: ${({ preview }) => (preview ? undefined : 'ew-resize')};
   z-index: 2;
 `;
 
@@ -64,7 +64,7 @@ const LabelContainer = styled.div<LabelContainerProps>`
   top: ${({ secondLine }) => (secondLine ? 22 : 8)}px;
   left: ${({ left }) => left}px;
   width: 30px;
-  text-align: ${({ rightAlign }) => (rightAlign ? "right" : undefined)};
+  text-align: ${({ rightAlign }) => (rightAlign ? 'right' : undefined)};
 `;
 
 const AbsoluteRoundEndLine = ({
@@ -87,8 +87,8 @@ const AbsoluteRoundEndLine = ({
 
   const { x } = useMousePosition();
   const interval = width / number;
-  const leftIndex = (left - leftMargin) / interval;
-  const rightIndex = (right - leftMargin) / interval;
+  const leftIndex = Math.floor(left / interval);
+  const rightIndex = Math.floor(right / interval);
 
   useMouseUp(() => {
     setLeftStatus(false);
@@ -197,7 +197,7 @@ const AbsoluteRoundEndLine = ({
         >
           <Circle
             size={6}
-            color={preview ? "rgba(96, 159, 255, 0.15)" : color}
+            color={preview ? 'rgba(96, 159, 255, 0.15)' : color}
             hover={!preview}
             alwaysHover={leftStatus && !preview}
           />
@@ -213,7 +213,7 @@ const AbsoluteRoundEndLine = ({
         >
           <Circle
             size={6}
-            color={preview ? "rgba(96, 159, 255, 0.15)" : color}
+            color={preview ? 'rgba(96, 159, 255, 0.15)' : color}
             hover={!preview}
             alwaysHover={leftStatus && !preview}
           />
@@ -221,7 +221,7 @@ const AbsoluteRoundEndLine = ({
         <Line
           left={left + 2}
           width={right - left - 4}
-          color={preview ? "rgba(96, 159, 255, 0.15)" : color}
+          color={preview ? 'rgba(96, 159, 255, 0.15)' : color}
           onMouseDown={() => setLeftStatus(true)}
         />
         {!preview && labels && labels[leftIndex] && (
