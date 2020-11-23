@@ -43,7 +43,7 @@ const ColorPicker = ({
   width,
   list,
   selected,
-  setSelected,
+  onChangeSelect,
 }: ColorPickerProps) => {
   const [toggled, setToggled] = useState(false);
 
@@ -72,7 +72,7 @@ const ColorPicker = ({
                 list={list}
                 width={width}
                 selected={selected}
-                setSelected={setSelected}
+                onChangeSelect={onChangeSelect}
               />
             </ItemListContainer>
           </Container>

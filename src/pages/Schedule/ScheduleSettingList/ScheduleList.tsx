@@ -1,25 +1,23 @@
-import React from 'react';
-import styled from 'styled-components';
-import Icons from '../../../components/atoms/Icons';
-import StyledIconWithText from '../../../components/molecules/StyledIconWithText/index';
-import InputWithIcon from '../../../components/molecules/InputWithIcon';
-import moment from 'moment';
+import React from "react";
+import styled from "styled-components";
+import Icons from "../../../components/atoms/Icons";
+import StyledIconWithText from "../../../components/molecules/StyledIconWithText/index";
+import InputWithIcon from "../../../components/molecules/InputWithIcon";
+import moment from "moment";
 
 export interface ScheduleListProps {
   scheduleList: {
     start: string;
     end: string;
   }[];
-  setScheduleList: React.Dispatch<
-    React.SetStateAction<
-      {
-        start: string;
-        end: string;
-      }[]
-    >
-  >;
+  onChangeScheduleList: (
+    value: {
+      start: string;
+      end: string;
+    }[]
+  ) => void;
   selectedScheduleIndex: number;
-  setSelectedScheduleIndex: React.Dispatch<React.SetStateAction<number>>;
+  onChangeSelectedScheduleIndex: (value: number) => void;
   baseSchedule: {
     start: string;
     end: string;
@@ -43,7 +41,7 @@ const StyledTextWithIconContainer = styled.div<StyledTextWithIconContainerProps>
   box-sizing: border-box;
   border-bottom: 1px solid #dcdcdc;
   border-right: ${({ rightBorder }) =>
-    rightBorder ? '1px solid #dcdcdc' : undefined};
+    rightBorder ? "1px solid #dcdcdc" : undefined};
 `;
 
 const IconContainer = styled.div`
@@ -63,8 +61,8 @@ const StyledIconWithTextContainer = styled.div<StyledIconWithTextContainerProps>
 
 const ScheduleList = ({
   scheduleList,
-  setScheduleList,
-  setSelectedScheduleIndex,
+  onChangeScheduleList,
+  onChangeSelectedScheduleIndex,
   selectedScheduleIndex,
   baseSchedule,
 }: ScheduleListProps) => {
@@ -72,16 +70,16 @@ const ScheduleList = ({
 
   const validatedDates = [true, true, true, true, true, true, true, true];
   const infiniteDate = baseSchedule.end;
-  const realInfiniteDate = '9999-12-31';
+  const realInfiniteDate = "9999-12-31";
 
   const handleAddSchedule = () => {
     if (scheduleList.length !== maxSchedule) {
-      setScheduleList([...scheduleList, baseSchedule]);
+      onChangeScheduleList([...scheduleList, baseSchedule]);
     }
   };
 
   const handleListSelect = (index: number) => {
-    setSelectedScheduleIndex(index);
+    onChangeSelectedScheduleIndex(index);
   };
 
   const handleInputValue = ({
@@ -98,7 +96,7 @@ const ScheduleList = ({
     const start = value.slice(0, 11);
     const end = value.slice(11);
 
-    setScheduleList([
+    onChangeScheduleList([
       ...scheduleList.slice(0, index),
       { start, end },
       ...scheduleList.slice(index + 1),
@@ -158,7 +156,7 @@ const ScheduleList = ({
           key={index.toString()}
         >
           <InputWithIcon
-            style={!validatedDates[index] ? { color: 'red' } : undefined}
+            style={!validatedDates[index] ? { color: "red" } : undefined}
             iconName="Calendar"
             iconColor="#999999"
             width={200}
@@ -175,12 +173,12 @@ const ScheduleList = ({
           iconName="Calendar"
           iconColor="#999999"
           width={230}
-          style={{ color: '#999999' }}
+          style={{ color: "#999999" }}
           onClick={handleAddSchedule}
         >
           {scheduleList.length === maxSchedule
-            ? '스케줄 추가 안됨'
-            : '다음 스케줄 추가'}
+            ? "스케줄 추가 안됨"
+            : "다음 스케줄 추가"}
         </StyledIconWithText>
       </StyledIconWithTextContainer>
     </Container>

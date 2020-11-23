@@ -44,9 +44,9 @@ const CenterLine = styled.div`
 
 const ScheduleSettingList = ({
   scheduleList,
-  setScheduleList,
-  setSelectedScheduleIndex,
+  onChangeScheduleList,
   selectedScheduleIndex,
+  onChangeSelectedScheduleIndex,
   baseSchedule,
 }: ScheduleSettingListProps) => {
   const chooseTime = ["1주 전", "2주 전", "3주 전", "4주 전"];
@@ -61,8 +61,8 @@ const ScheduleSettingList = ({
       <ContentsContainer>
         <ScheduleList
           scheduleList={scheduleList}
-          setScheduleList={setScheduleList}
-          setSelectedScheduleIndex={setSelectedScheduleIndex}
+          onChangeScheduleList={onChangeScheduleList}
+          onChangeSelectedScheduleIndex={onChangeSelectedScheduleIndex}
           selectedScheduleIndex={selectedScheduleIndex}
           baseSchedule={baseSchedule}
         />

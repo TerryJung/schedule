@@ -1,7 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
-import InputWithLabel from '../../../components/molecules/InputWithLabel';
-import ColorPicker from '../../../components/molecules/ColorPicker/index';
+import React from "react";
+import styled from "styled-components";
+import InputWithLabel from "../../../components/molecules/InputWithLabel";
+import ColorPicker from "../../../components/molecules/ColorPicker/index";
 
 const Container = styled.div`
   display: flex;
@@ -18,7 +18,7 @@ interface GlobalSettingProps {
   onScheduleNameChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 
   colorSelected: number | null;
-  setColorSelected: React.Dispatch<React.SetStateAction<number | null>>;
+  onChangeColorSelect: (value: number | null) => void;
 
   list: {
     label: string;
@@ -30,7 +30,7 @@ const GlobalSetting = ({
   scheduleName,
   onScheduleNameChange,
   colorSelected,
-  setColorSelected,
+  onChangeColorSelect,
   list,
 }: GlobalSettingProps) => {
   return (
@@ -42,10 +42,10 @@ const GlobalSetting = ({
       />
       <ColorPickerContainer>
         <ColorPicker
-          width={140}
+          width={120}
           list={list}
           selected={colorSelected}
-          setSelected={setColorSelected}
+          onChangeSelect={onChangeColorSelect}
         />
       </ColorPickerContainer>
     </Container>

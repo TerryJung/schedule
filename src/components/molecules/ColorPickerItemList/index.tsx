@@ -11,7 +11,7 @@ export interface ColorPickerItemListProps {
     color: string;
   }[];
   selected: number | null;
-  setSelected: React.Dispatch<React.SetStateAction<number | null>>;
+  onChangeSelect: (value: number | null) => void;
 }
 
 const LabelContainer = styled.div`
@@ -41,7 +41,7 @@ const ColorPickerItemList = ({
   width,
   list,
   selected,
-  setSelected,
+  onChangeSelect,
 }: ColorPickerItemListProps) => {
   const [keyboardSelected, setKeyboardSelected] = useState(0);
 
@@ -59,7 +59,7 @@ const ColorPickerItemList = ({
   useKeyDown(13, () => handleClick(keyboardSelected));
 
   function handleClick(index: number) {
-    setSelected(index);
+    onChangeSelect(index);
   }
 
   return (

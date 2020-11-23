@@ -105,7 +105,7 @@ const TimeRangeSetting = ({
             reset
             color="#609FFF"
             timeRanges={tuesdayTimeRanges}
-            onChangeTimeRanges={(value) => setTuesdayTimeRanges}
+            onChangeTimeRanges={(value) => setTuesdayTimeRanges(value)}
           />
         </RangePickerContainer>
       </TextAndRangePickerContainer>
