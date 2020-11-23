@@ -41,14 +41,14 @@ const MoleculesDropdown = () => {
           width={150}
           list={dropdownList}
           selected={selected1}
-          setSelected={setSelected1}
+          onChangeSelected={(value) => setSelected1(value)}
         />
         <Dropdown
           width={200}
           label="진료실"
           list={dropdownList}
           selected={selected2}
-          setSelected={setSelected2}
+          onChangeSelected={(value) => setSelected2(value)}
         />
         <Dropdown
           width={200}
@@ -56,14 +56,14 @@ const MoleculesDropdown = () => {
           disabled
           list={dropdownList}
           selected={selected3}
-          setSelected={setSelected3}
+          onChangeSelected={(value) => setSelected3(value)}
         />
         <Dropdown
           width={200}
           list={dropdownList}
           placeholder="아무것도 선택되지 않음"
           selected={selected4}
-          setSelected={setSelected4}
+          onChangeSelected={(value) => setSelected4(value)}
         />
         <Dropdown
           width={150}
@@ -71,7 +71,7 @@ const MoleculesDropdown = () => {
           placeholder="위"
           direction="Up"
           selected={selected5}
-          setSelected={setSelected5}
+          onChangeSelected={(value) => setSelected5(value)}
         />
         <Dropdown
           width={150}
@@ -79,7 +79,7 @@ const MoleculesDropdown = () => {
           placeholder="겹치게"
           direction="Overlap"
           selected={selected6}
-          setSelected={setSelected6}
+          onChangeSelected={(value) => setSelected6(value)}
         />
         <Dropdown
           width={150}
@@ -87,7 +87,7 @@ const MoleculesDropdown = () => {
           placeholder="아래"
           direction="Down"
           selected={selected7}
-          setSelected={setSelected7}
+          onChangeSelected={(value) => setSelected7(value)}
         />
         <Dropdown
           width={150}
@@ -95,7 +95,7 @@ const MoleculesDropdown = () => {
           placeholder="왼쪽"
           direction="Left"
           selected={selected8}
-          setSelected={setSelected8}
+          onChangeSelected={(value) => setSelected8(value)}
         />
         <Dropdown
           width={150}
@@ -103,7 +103,7 @@ const MoleculesDropdown = () => {
           placeholder="오른쪽"
           direction="Right"
           selected={selected9}
-          setSelected={setSelected9}
+          onChangeSelected={(value) => setSelected9(value)}
         />
         <Dropdown
           width={150}
@@ -111,7 +111,7 @@ const MoleculesDropdown = () => {
           placeholder="No 자동선택"
           autoSelect={false}
           selected={selected10}
-          setSelected={setSelected10}
+          onChangeSelected={(value) => setSelected1(value)}
         />
       </FlexRowContainer>
     </>

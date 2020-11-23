@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import IconWithLabel from '../../../components/molecules/IconWithLabel/index';
-import RangePicker from '../../../components/molecules/RangePicker';
-import Text from '../../../components/atoms/Text/index';
+import React, { useState } from "react";
+import styled from "styled-components";
+import IconWithLabel from "../../../components/molecules/IconWithLabel/index";
+import RangePicker from "../../../components/molecules/RangePicker";
+import Text from "../../../components/atoms/Text/index";
 
 const Container = styled.div`
   display: flex;
@@ -50,30 +50,30 @@ const TimeRangeSetting = ({
   const [sundayTimeRanges, setSundayTimeRanges] = useState(base);
 
   const labels = [
-    '08:30',
-    '09:00',
-    '09:30',
-    '10:00',
-    '10:30',
-    '11:00',
-    '11:30',
-    '12:00',
-    '12:30',
-    '13:00',
-    '13:30',
-    '14:00',
-    '14:30',
-    '15:00',
-    '15:30',
-    '16:00',
-    '16:30',
-    '17:00',
-    '17:30',
-    '18:00',
-    '18:30',
-    '19:00',
-    '19:30',
-    '20:00',
+    "08:30",
+    "09:00",
+    "09:30",
+    "10:00",
+    "10:30",
+    "11:00",
+    "11:30",
+    "12:00",
+    "12:30",
+    "13:00",
+    "13:30",
+    "14:00",
+    "14:30",
+    "15:00",
+    "15:30",
+    "16:00",
+    "16:30",
+    "17:00",
+    "17:30",
+    "18:00",
+    "18:30",
+    "19:00",
+    "19:30",
+    "20:00",
   ];
 
   return (
@@ -91,7 +91,7 @@ const TimeRangeSetting = ({
             reset
             color="#609FFF"
             timeRanges={mondayTimeRanges}
-            setTimeRanges={setMondayTimeRanges}
+            onChangeTimeRanges={(value) => setMondayTimeRanges(value)}
           />
         </RangePickerContainer>
       </TextAndRangePickerContainer>
@@ -105,7 +105,7 @@ const TimeRangeSetting = ({
             reset
             color="#609FFF"
             timeRanges={tuesdayTimeRanges}
-            setTimeRanges={setTuesdayTimeRanges}
+            onChangeTimeRanges={(value) => setTuesdayTimeRanges}
           />
         </RangePickerContainer>
       </TextAndRangePickerContainer>
@@ -120,7 +120,7 @@ const TimeRangeSetting = ({
             reset
             color="#609FFF"
             timeRanges={wednesdayTimeRanges}
-            setTimeRanges={setWednesdayTimeRanges}
+            onChangeTimeRanges={(value) => setWednesdayTimeRanges(value)}
           />
         </RangePickerContainer>
       </TextAndRangePickerContainer>
@@ -135,7 +135,7 @@ const TimeRangeSetting = ({
             reset
             color="#609FFF"
             timeRanges={thursdayTimeRanges}
-            setTimeRanges={setThursdayTimeRanges}
+            onChangeTimeRanges={(value) => setThursdayTimeRanges(value)}
           />
         </RangePickerContainer>
       </TextAndRangePickerContainer>
@@ -150,7 +150,7 @@ const TimeRangeSetting = ({
             reset
             color="#609FFF"
             timeRanges={fridayTimeRanges}
-            setTimeRanges={setFridayTimeRanges}
+            onChangeTimeRanges={(value) => setFridayTimeRanges(value)}
           />
         </RangePickerContainer>
       </TextAndRangePickerContainer>
@@ -165,7 +165,7 @@ const TimeRangeSetting = ({
             reset
             color="#609FFF"
             timeRanges={saturdayTimeRanges}
-            setTimeRanges={setSaturdayTimeRanges}
+            onChangeTimeRanges={(value) => setSaturdayTimeRanges(value)}
           />
         </RangePickerContainer>
       </TextAndRangePickerContainer>
@@ -180,7 +180,7 @@ const TimeRangeSetting = ({
             reset
             color="#609FFF"
             timeRanges={sundayTimeRanges}
-            setTimeRanges={setSundayTimeRanges}
+            onChangeTimeRanges={(value) => setSundayTimeRanges(value)}
           />
         </RangePickerContainer>
       </TextAndRangePickerContainer>

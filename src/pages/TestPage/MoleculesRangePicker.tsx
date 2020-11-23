@@ -41,7 +41,7 @@ const MoleculesRangePicker = () => {
           reset
           color="#609FFF"
           timeRanges={timeRanges1}
-          setTimeRanges={setTimeRanges1}
+          onChangeTimeRanges={(value) => setTimeRanges1(value)}
         />
         <div style={{ width: 20 }}></div>
         <RangePicker
@@ -49,7 +49,7 @@ const MoleculesRangePicker = () => {
           number={10}
           color="red"
           timeRanges={timeRanges2}
-          setTimeRanges={setTimeRanges2}
+          onChangeTimeRanges={(value) => setTimeRanges2(value)}
         />
       </FlexRowContainer>
       <div style={{ height: 10 }}></div>

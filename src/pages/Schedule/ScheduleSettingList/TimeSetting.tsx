@@ -1,8 +1,8 @@
-import React from 'react';
-import styled from 'styled-components';
-import OpenBookTime from './OpenBookTime';
-import { OpenBookTimeProps } from './OpenBookTime';
-import TimeRangeSetting from './TimeRangeSetting';
+import React from "react";
+import styled from "styled-components";
+import OpenBookTime from "./OpenBookTime";
+import { OpenBookTimeProps } from "./OpenBookTime";
+import TimeRangeSetting from "./TimeRangeSetting";
 
 const Container = styled.div`
   width: 100%;
@@ -16,19 +16,19 @@ export interface TimeSettingProps extends OpenBookTimeProps {}
 const TimeSetting = ({
   chooseTime,
   timeSelected,
-  setTimeSelected,
+  onChangeTimeSelected,
 }: TimeSettingProps) => {
   return (
     <Container>
       <OpenBookTime
         chooseTime={chooseTime}
         timeSelected={timeSelected}
-        setTimeSelected={setTimeSelected}
+        onChangeTimeSelected={onChangeTimeSelected}
       />
       <TimeRangeSetting
         chooseTime={chooseTime}
         timeSelected={timeSelected}
-        setTimeSelected={setTimeSelected}
+        setTimeSelected={() => {}}
       />
     </Container>
   );

@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import DropdownItem from '../DropdownItem';
-import { useEffect } from 'react';
-import useKeyDown from '../../../hooks/useKeyDown';
+import React, { useState } from "react";
+import styled from "styled-components";
+import DropdownItem from "../DropdownItem";
+import { useEffect } from "react";
+import useKeyDown from "../../../hooks/useKeyDown";
 export interface DropdownItemListProps {
   width: number;
   list: string[];
   selected: number | null;
-  setSelected: React.Dispatch<React.SetStateAction<number | null>>;
+  onChangeSelected: (value: number | null) => void;
   autoSelect?: boolean;
 }
 
@@ -35,16 +35,16 @@ const DropdownItemList = ({
   width,
   list,
   selected,
-  setSelected,
+  onChangeSelected,
   autoSelect = true,
 }: DropdownItemListProps) => {
   const [keyboardSelected, setKeyboardSelected] = useState(0);
 
   useEffect(() => {
     if (autoSelect && selected === null) {
-      setSelected(0);
+      onChangeSelected(0);
     }
-  }, [autoSelect, selected, setSelected]);
+  }, [autoSelect, selected, onChangeSelected]);
 
   useKeyDown(38, () =>
     setKeyboardSelected(keyboardSelected !== 0 ? keyboardSelected - 1 : 0)
@@ -61,9 +61,9 @@ const DropdownItemList = ({
 
   function handleClick(index: number) {
     if (selected === index && !autoSelect) {
-      setSelected(null);
+      onChangeSelected(null);
     } else {
-      setSelected(index);
+      onChangeSelected(index);
     }
   }
 

@@ -1,8 +1,9 @@
-import React from 'react';
-import styled from 'styled-components';
-import Dropdown from '../../../components/molecules/Dropdown';
-import IconWithLabel from '../../../components/molecules/IconWithLabel/index';
-import Tip from '../../../components/molecules/Tip/index';
+import React from "react";
+import styled from "styled-components";
+import Dropdown from "../../../components/molecules/Dropdown";
+import { DropdownItemListProps } from "../../../components/molecules/DropdownItemList";
+import IconWithLabel from "../../../components/molecules/IconWithLabel/index";
+import Tip from "../../../components/molecules/Tip/index";
 
 const Container = styled.div`
   position: relative;
@@ -28,13 +29,12 @@ const TipContainer = styled.div`
 export interface OpenBookTimeProps {
   chooseTime: string[];
   timeSelected: number | null;
-  setTimeSelected: React.Dispatch<React.SetStateAction<number | null>>;
+  onChangeTimeSelected: (value: number | null) => void;
 }
-
 const OpenBookTime = ({
   chooseTime,
   timeSelected,
-  setTimeSelected,
+  onChangeTimeSelected,
 }: OpenBookTimeProps) => {
   return (
     <Container>
@@ -51,7 +51,7 @@ const OpenBookTime = ({
           list={chooseTime}
           autoSelect
           selected={timeSelected}
-          setSelected={setTimeSelected}
+          onChangeSelected={onChangeTimeSelected}
         />
         <TipContainer>
           <Tip

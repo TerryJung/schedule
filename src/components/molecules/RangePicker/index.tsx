@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
-import AbsoluteRoundEndLine from '../AbsoluteRoundEndLine/index';
-import useLeftOffset from '../../../hooks/useLeftOffset';
-import useMousePosition from '../../../hooks/useMousePosition';
-import useTopOffset from '../../../hooks/useTopOffset';
-import Icons from '../../atoms/Icons/index';
+import React, { useEffect, useRef, useState } from "react";
+import styled from "styled-components";
+import AbsoluteRoundEndLine from "../AbsoluteRoundEndLine/index";
+import useLeftOffset from "../../../hooks/useLeftOffset";
+import useMousePosition from "../../../hooks/useMousePosition";
+import useTopOffset from "../../../hooks/useTopOffset";
+import Icons from "../../atoms/Icons/index";
 
 interface LineBackgroundProps {
   width: number;
@@ -21,6 +21,11 @@ const IconContainer = styled.div`
   left: 14px;
   cursor: pointer;
 `;
+
+export interface iRange {
+  start: number;
+  end: number;
+}
 
 const LineBackground = styled.div<LineBackgroundProps>`
   position: absolute;
@@ -39,18 +44,8 @@ interface RangePickerProps {
   reset?: boolean;
   color: string;
 
-  timeRanges: {
-    start: number;
-    end: number;
-  }[];
-  setTimeRanges: React.Dispatch<
-    React.SetStateAction<
-      {
-        start: number;
-        end: number;
-      }[]
-    >
-  >;
+  timeRanges: iRange[];
+  onChangeTimeRanges: (value: iRange[]) => void;
 }
 
 const RangePicker = ({
@@ -61,11 +56,10 @@ const RangePicker = ({
   color,
 
   timeRanges,
-  setTimeRanges,
+  onChangeTimeRanges,
 }: RangePickerProps) => {
   const base = [{ start: 0, end: width }];
 
-  // const [timeRanges, setTimeRanges] = useState(base);
   const [insertable, setInsertable] = useState(false);
   const interval = width / number;
 
@@ -77,8 +71,6 @@ const RangePicker = ({
   const mouseTopPosition = (y ? y : 0) - topOffset - 3;
   const roundMouseLeftPosition =
     Math.round(mouseLeftPosition / interval) * interval;
-
-  // console.log(insertable, roundMouseLeftPosition, y, mouseTopPosition);
 
   useEffect(() => {
     let inRange = false;
@@ -117,7 +109,7 @@ const RangePicker = ({
         }
       }
 
-      setTimeRanges([
+      onChangeTimeRanges([
         ...timeRanges.slice(0, index),
         {
           start: roundMouseLeftPosition,
@@ -134,14 +126,14 @@ const RangePicker = ({
     index: number,
     newValue: { start: number; end: number }
   ) => {
-    setTimeRanges([
+    onChangeTimeRanges([
       ...timeRanges.slice(0, index),
       newValue,
       ...timeRanges.slice(index + 1),
     ]);
   };
 
-  const handleReset = () => setTimeRanges(base);
+  const handleReset = () => onChangeTimeRanges(base);
 
   return (
     <Container ref={containerRef} onClick={addNewLine}>
@@ -186,7 +178,7 @@ const RangePicker = ({
       <div style={{ width }}></div>
       {reset && (
         <IconContainer onClick={handleReset}>
-          <Icons name="Clear" color="#999999" size={24} />{' '}
+          <Icons name="Clear" color="#999999" size={24} />{" "}
         </IconContainer>
       )}
     </Container>

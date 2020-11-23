@@ -32,13 +32,13 @@ const MoleculesDropdownItemList = () => {
           width={150}
           list={dropdownList}
           selected={selected1}
-          setSelected={setSelected1}
+          onChangeSelected={(value) => setSelected1(value)}
         />
         <DropdownItemList
           width={200}
           list={dropdownList}
           selected={selected2}
-          setSelected={setSelected2}
+          onChangeSelected={(value) => setSelected2(value)}
         />
       </FlexRowContainer>
     </>

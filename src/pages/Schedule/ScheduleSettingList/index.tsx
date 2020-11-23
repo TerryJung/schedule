@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import IconWithLabel from '../../../components/molecules/IconWithLabel';
-import styled from 'styled-components';
-import ScheduleList from './ScheduleList';
-import { ScheduleListProps } from './ScheduleList';
-import TimeSetting from './TimeSetting';
-import Button from '../../../components/atoms/Button';
-import Text from '../../../components/atoms/Text/index';
+import React, { useState } from "react";
+import IconWithLabel from "../../../components/molecules/IconWithLabel";
+import styled from "styled-components";
+import ScheduleList from "./ScheduleList";
+import { ScheduleListProps } from "./ScheduleList";
+import TimeSetting from "./TimeSetting";
+import Button from "../../../components/atoms/Button";
+import Text from "../../../components/atoms/Text/index";
 
 const Container = styled.div`
   display: flex;
@@ -35,7 +35,7 @@ const ButtonsContainer = styled.div`
 
 const CenterLine = styled.div`
   position: absolute;
-  left: 269px;
+  left: 269.05px;
   width: 1px;
   height: 250px;
   border-left: 1px solid #dcdcdc;
@@ -49,7 +49,7 @@ const ScheduleSettingList = ({
   selectedScheduleIndex,
   baseSchedule,
 }: ScheduleSettingListProps) => {
-  const chooseTime = ['1주 전', '2주 전', '3주 전', '4주 전'];
+  const chooseTime = ["1주 전", "2주 전", "3주 전", "4주 전"];
 
   const [timeSelected, setTimeSelected] = useState<number | null>(0);
 
@@ -69,7 +69,7 @@ const ScheduleSettingList = ({
         <TimeSetting
           chooseTime={chooseTime}
           timeSelected={timeSelected}
-          setTimeSelected={setTimeSelected}
+          onChangeTimeSelected={(value) => setTimeSelected(value)}
         />
       </ContentsContainer>
       <ButtonsContainer>
