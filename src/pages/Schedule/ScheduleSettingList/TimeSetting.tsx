@@ -3,6 +3,7 @@ import styled from "styled-components";
 import OpenBookTime from "./OpenBookTime";
 import { OpenBookTimeProps } from "./OpenBookTime";
 import TimeRangeSetting from "./TimeRangeSetting";
+import { TimeRangeSettingProps } from "./TimeRangeSetting";
 
 const Container = styled.div`
   width: 100%;
@@ -17,7 +18,11 @@ const TimeSetting = ({
   chooseTime,
   timeSelected,
   onChangeTimeSelected,
-}: TimeSettingProps) => {
+  timeRanges,
+  onChangeTimeRanges,
+  timeLabels,
+  color,
+}: OpenBookTimeProps & TimeRangeSettingProps) => {
   return (
     <Container>
       <OpenBookTime
@@ -26,9 +31,10 @@ const TimeSetting = ({
         onChangeTimeSelected={onChangeTimeSelected}
       />
       <TimeRangeSetting
-        chooseTime={chooseTime}
-        timeSelected={timeSelected}
-        setTimeSelected={() => {}}
+        timeRanges={timeRanges}
+        onChangeTimeRanges={onChangeTimeRanges}
+        timeLabels={timeLabels}
+        color={color}
       />
     </Container>
   );

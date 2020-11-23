@@ -3,6 +3,7 @@ import styled from "styled-components";
 import IconWithLabel from "../../../components/molecules/IconWithLabel/index";
 import RangePicker from "../../../components/molecules/RangePicker";
 import Text from "../../../components/atoms/Text/index";
+import { iRange } from "../../../components/molecules/RangePicker/index";
 
 const Container = styled.div`
   display: flex;
@@ -29,17 +30,20 @@ const RangePickerContainer = styled.div`
 `;
 
 export interface TimeRangeSettingProps {
-  chooseTime: string[];
-  timeSelected: number | null;
-  setTimeSelected: React.Dispatch<React.SetStateAction<number | null>>;
+  timeRanges: iRange[][];
+  onChangeTimeRanges: (value: iRange[][]) => void;
+  timeLabels: string[];
+  color: string;
 }
 
 const TimeRangeSetting = ({
-  chooseTime,
-  timeSelected,
-  setTimeSelected,
+  timeRanges,
+  onChangeTimeRanges,
+  timeLabels,
+  color,
 }: TimeRangeSettingProps) => {
   const base = [{ start: 0, end: 300 }];
+  const days = ["월", "화", "수", "목", "금", "토", "일"];
 
   const [mondayTimeRanges, setMondayTimeRanges] = useState(base);
   const [tuesdayTimeRanges, setTuesdayTimeRanges] = useState(base);
@@ -49,141 +53,33 @@ const TimeRangeSetting = ({
   const [saturdayTimeRanges, setSaturdayTimeRanges] = useState(base);
   const [sundayTimeRanges, setSundayTimeRanges] = useState(base);
 
-  const labels = [
-    "08:30",
-    "09:00",
-    "09:30",
-    "10:00",
-    "10:30",
-    "11:00",
-    "11:30",
-    "12:00",
-    "12:30",
-    "13:00",
-    "13:30",
-    "14:00",
-    "14:30",
-    "15:00",
-    "15:30",
-    "16:00",
-    "16:30",
-    "17:00",
-    "17:30",
-    "18:00",
-    "18:30",
-    "19:00",
-    "19:30",
-    "20:00",
-  ];
-
   return (
     <Container>
       <IconWithLabelContainer>
         <IconWithLabel iconColor="#999999" icon="Clock" label="업무시간설정" />
       </IconWithLabelContainer>
-      <TextAndRangePickerContainer>
-        <Text>월</Text>
-        <RangePickerContainer>
-          <RangePicker
-            width={300}
-            number={23}
-            labels={labels}
-            reset
-            color="#609FFF"
-            timeRanges={mondayTimeRanges}
-            onChangeTimeRanges={(value) => setMondayTimeRanges(value)}
-          />
-        </RangePickerContainer>
-      </TextAndRangePickerContainer>
-      <TextAndRangePickerContainer>
-        <Text>화</Text>
-        <RangePickerContainer>
-          <RangePicker
-            width={300}
-            number={23}
-            labels={labels}
-            reset
-            color="#609FFF"
-            timeRanges={tuesdayTimeRanges}
-            onChangeTimeRanges={(value) => setTuesdayTimeRanges(value)}
-          />
-        </RangePickerContainer>
-      </TextAndRangePickerContainer>
-
-      <TextAndRangePickerContainer>
-        <Text>수</Text>
-        <RangePickerContainer>
-          <RangePicker
-            width={300}
-            number={23}
-            labels={labels}
-            reset
-            color="#609FFF"
-            timeRanges={wednesdayTimeRanges}
-            onChangeTimeRanges={(value) => setWednesdayTimeRanges(value)}
-          />
-        </RangePickerContainer>
-      </TextAndRangePickerContainer>
-
-      <TextAndRangePickerContainer>
-        <Text>목</Text>
-        <RangePickerContainer>
-          <RangePicker
-            width={300}
-            number={23}
-            labels={labels}
-            reset
-            color="#609FFF"
-            timeRanges={thursdayTimeRanges}
-            onChangeTimeRanges={(value) => setThursdayTimeRanges(value)}
-          />
-        </RangePickerContainer>
-      </TextAndRangePickerContainer>
-
-      <TextAndRangePickerContainer>
-        <Text>금</Text>
-        <RangePickerContainer>
-          <RangePicker
-            width={300}
-            number={23}
-            labels={labels}
-            reset
-            color="#609FFF"
-            timeRanges={fridayTimeRanges}
-            onChangeTimeRanges={(value) => setFridayTimeRanges(value)}
-          />
-        </RangePickerContainer>
-      </TextAndRangePickerContainer>
-
-      <TextAndRangePickerContainer>
-        <Text>토</Text>
-        <RangePickerContainer>
-          <RangePicker
-            width={300}
-            number={23}
-            labels={labels}
-            reset
-            color="#609FFF"
-            timeRanges={saturdayTimeRanges}
-            onChangeTimeRanges={(value) => setSaturdayTimeRanges(value)}
-          />
-        </RangePickerContainer>
-      </TextAndRangePickerContainer>
-
-      <TextAndRangePickerContainer>
-        <Text>일</Text>
-        <RangePickerContainer>
-          <RangePicker
-            width={300}
-            number={23}
-            labels={labels}
-            reset
-            color="#609FFF"
-            timeRanges={sundayTimeRanges}
-            onChangeTimeRanges={(value) => setSundayTimeRanges(value)}
-          />
-        </RangePickerContainer>
-      </TextAndRangePickerContainer>
+      {days.map((day, index) => (
+        <TextAndRangePickerContainer>
+          <Text>{day}</Text>
+          <RangePickerContainer>
+            <RangePicker
+              width={300}
+              number={23}
+              labels={timeLabels}
+              reset
+              color={color}
+              timeRanges={timeRanges[index]}
+              onChangeTimeRanges={(value) =>
+                onChangeTimeRanges([
+                  ...timeRanges.slice(0, index),
+                  value,
+                  ...timeRanges.slice(index + 1),
+                ])
+              }
+            />
+          </RangePickerContainer>
+        </TextAndRangePickerContainer>
+      ))}
     </Container>
   );
 };
