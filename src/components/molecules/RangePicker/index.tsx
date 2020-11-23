@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
-import styled from "styled-components";
-import AbsoluteRoundEndLine from "../AbsoluteRoundEndLine/index";
-import useLeftOffset from "../../../hooks/useLeftOffset";
-import useMousePosition from "../../../hooks/useMousePosition";
-import useTopOffset from "../../../hooks/useTopOffset";
-import Icons from "../../atoms/Icons/index";
+import React, { useEffect, useRef, useState } from 'react';
+import styled from 'styled-components';
+import AbsoluteRoundEndLine from '../AbsoluteRoundEndLine/index';
+import useLeftOffset from '../../../hooks/useLeftOffset';
+import useMousePosition from '../../../hooks/useMousePosition';
+import useTopOffset from '../../../hooks/useTopOffset';
+import Icons from '../../atoms/Icons/index';
 
 interface LineBackgroundProps {
   width: number;
@@ -186,7 +186,7 @@ const RangePicker = ({
       <div style={{ width }}></div>
       {reset && (
         <IconContainer onClick={handleReset}>
-          <Icons name="Clear" color="#999999" size={24} />{" "}
+          <Icons name="Clear" color="#999999" size={24} />{' '}
         </IconContainer>
       )}
     </Container>

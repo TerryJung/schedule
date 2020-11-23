@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 export interface LabelProps {
   children: string;
@@ -8,23 +8,21 @@ export interface LabelProps {
   noSelect?: boolean;
 }
 
-const Container = styled.div``;
-
 const StyledSpan = styled.span<LabelProps>`
   height: ${({ size }) => (size ? size + 7 : 20)}px;
 
-  font-family: "Spoqa Han Sans Regular";
+  font-family: 'Spoqa Han Sans Regular';
   font-style: normal;
   font-weight: bold;
   font-size: ${({ size }) => size}px;
   line-height: ${({ size }) => (size ? size + 7 : 20)}px;
   color: ${({ color }) => color};
-  user-select: ${({ noSelect }) => (noSelect ? "none" : undefined)};
+  user-select: ${({ noSelect }) => (noSelect ? 'none' : undefined)};
 `;
 
 const Label = ({
   children,
-  color = "black",
+  color = 'black',
   size = 13,
   noSelect = false,
 }: LabelProps) => {

@@ -36,9 +36,7 @@ interface StyledTextWithIconContainerProps {
   rightBorder: boolean;
 }
 
-const StyledTextWithIconContainer = styled.div<
-  StyledTextWithIconContainerProps
->`
+const StyledTextWithIconContainer = styled.div<StyledTextWithIconContainerProps>`
   padding: 10px 20px;
   display: flex;
   align-content: center;
@@ -57,9 +55,7 @@ interface StyledIconWithTextContainerProps {
   height: number;
 }
 
-const StyledIconWithTextContainer = styled.div<
-  StyledIconWithTextContainerProps
->`
+const StyledIconWithTextContainer = styled.div<StyledIconWithTextContainerProps>`
   padding: 10px 20px;
   border-right: 1px solid #dcdcdc;
   height: ${({ height }) => height}px;
@@ -133,21 +129,21 @@ const ScheduleList = ({
 
       if (validatedDates[i]) {
         for (let j = 0; j < i; j++) {
-          if (validatedDates[j]) {
-            const jStartValue = Date.parse(scheduleList[j].start.slice(0, 10));
-            const jEndValue = Date.parse(
-              scheduleList[j].end === infiniteDate
-                ? realInfiniteDate
-                : scheduleList[j].end
-            );
-            if (
-              (iStartValue >= jStartValue && iStartValue <= jEndValue) ||
-              (iEndValue >= jStartValue && iEndValue <= jEndValue)
-            ) {
-              validatedDates[i] = false;
-              validatedDates[j] = false;
-            }
+          // if (validatedDates[j]) {
+          const jStartValue = Date.parse(scheduleList[j].start.slice(0, 10));
+          const jEndValue = Date.parse(
+            scheduleList[j].end === infiniteDate
+              ? realInfiniteDate
+              : scheduleList[j].end
+          );
+          if (
+            (iStartValue >= jStartValue && iStartValue <= jEndValue) ||
+            (iEndValue >= jStartValue && iEndValue <= jEndValue)
+          ) {
+            validatedDates[i] = false;
+            validatedDates[j] = false;
           }
+          // }
         }
       }
     }
